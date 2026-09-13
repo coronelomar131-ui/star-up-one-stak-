@@ -1,1 +1,39 @@
-# star-up-one-stak-
+# Libreta
+
+Sistema de gestión para negocios chicos: **barberías y estéticas, talleres y
+servicios técnicos, tiendas, y negocios de comida**.
+
+Un solo producto con un núcleo común —clientes, agenda, inventario, caja y
+cierre del día— y cuatro caras, porque el vocabulario cambia según el oficio:
+en barbería es *cita*, en taller es *orden de trabajo*, en comida es *pedido*,
+en tienda es *venta*.
+
+El competidor real no es otro software. Es el cuaderno.
+
+## Estado
+
+Prelanzamiento. Lo único construido es la landing.
+
+## Contenido
+
+- `index.html` — landing de prelanzamiento, sin dependencias ni build.
+  Se abre directo en el navegador y se despliega como sitio estático.
+
+## Diseño
+
+- **Tipografía:** Archivo (Omnibus-Type), en ancho expandido para titulares.
+  Elegida por el español y por el parecido con la rotulación de local.
+- **Color:** base neutra fría, y un color por vertical tomado del oficio —
+  azul eléctrico (barbería), naranja de señalamiento (taller), verde de toldo
+  (tienda), rojo de salsa (comida). El acento solo marca estado, dinero y
+  acción; nunca decora.
+- **Layout:** primero teléfono. El tráfico llega desde video vertical, y así
+  es como se usa el producto: de pie, detrás del mostrador.
+- **Movimiento:** un solo momento — al elegir vertical cambian el color, la
+  pantalla del teléfono y las cifras. Nada aparece al hacer scroll.
+
+## Pendiente
+
+- El formulario de lista de espera todavía no guarda nada. Falta conectarlo
+  a Supabase y desplegar en Vercel.
+- Definir nombre y dominio definitivos.

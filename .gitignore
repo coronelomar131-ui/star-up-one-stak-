@@ -1,0 +1,22 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Node
+node_modules/
+dist/
+.next/
+.vercel/
+
+# Entorno — nunca subir llaves
+.env
+.env.*
+!.env.example
+
+# Reportes generados
+cyber-neo-report-*.md

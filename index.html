@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Libreta: citas, órdenes, ventas y el corte del día para barberías, talleres, tiendas y negocios de comida.">
+<style>:root{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Libreta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap">
+</head>
+<body>
+<style>
+:root{
+  --papel:#F6F7F5;
+  --papel-hondo:#EBEEE9;
+  --tinta:#12212E;
+  --tinta-suave:#5B6C79;
+  --linea:#D7DCD6;
+  --sombra:rgba(18,33,46,.10);
+  --c-barberia:#2F4BE0;
+  --c-taller:#D95606;
+  --c-tienda:#12784A;
+  --c-comida:#CE1B2B;
+  --acento:var(--c-barberia);
+  --sobre-acento:#FFFFFF;
+  --paso:clamp(1.15rem,3.5vw,1.6rem);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --papel:#0D1821;
+    --papel-hondo:#14232F;
+    --tinta:#EDF2EF;
+    --tinta-suave:#94A7B4;
+    --linea:#22333F;
+    --sombra:rgba(0,0,0,.45);
+    --c-barberia:#7F96FF;
+    --c-taller:#FF9147;
+    --c-tienda:#3BC97E;
+    --c-comida:#FF6B78;
+    --sobre-acento:#0D1821;
+  }
+}
+:root[data-theme="dark"]{
+  --papel:#0D1821;
+  --papel-hondo:#14232F;
+  --tinta:#EDF2EF;
+  --tinta-suave:#94A7B4;
+  --linea:#22333F;
+  --sombra:rgba(0,0,0,.45);
+  --c-barberia:#7F96FF;
+  --c-taller:#FF9147;
+  --c-tienda:#3BC97E;
+  --c-comida:#FF6B78;
+  --sobre-acento:#0D1821;
+}
+[data-nicho="barberia"]{--acento:var(--c-barberia);}
+[data-nicho="taller"]{--acento:var(--c-taller);}
+[data-nicho="tienda"]{--acento:var(--c-tienda);}
+[data-nicho="comida"]{--acento:var(--c-comida);}
+
+*{box-sizing:border-box;}
+[hidden]{display:none !important;}
+body{
+  margin:0;
+  background:var(--papel);
+  color:var(--tinta);
+  font-family:'Archivo','Helvetica Neue',Arial,sans-serif;
+  font-size:1.0625rem;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.limite{max-width:1120px;margin-inline:auto;padding-inline:20px;}
+h1,h2,h3{
+  font-variation-settings:'wdth' 116,'wght' 800;
+  line-height:.98;
+  letter-spacing:-.02em;
+  text-wrap:balance;
+  margin:0;
+}
+p{margin:0;}
+a{color:inherit;}
+:focus-visible{outline:3px solid var(--acento);outline-offset:3px;border-radius:2px;}
+
+/* ---- barra ---- */
+.barra{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding-block:1.1rem;border-bottom:1px solid var(--linea);
+}
+.marca{font-variation-settings:'wdth' 120,'wght' 900;font-size:1.3rem;letter-spacing:-.03em;}
+.btn-chico{
+  font-variation-settings:'wdth' 100,'wght' 700;
+  font-size:.95rem;text-decoration:none;padding:.5rem .9rem;
+  border:1.5px solid var(--tinta);
+}
+.btn-chico:hover{background:var(--tinta);color:var(--papel);}
+
+/* ---- hero ---- */
+.hero{display:grid;gap:2.25rem;padding-block:clamp(2.5rem,7vw,4.5rem) clamp(2.5rem,6vw,4rem);}
+h1{font-size:clamp(2.9rem,10.5vw,5.25rem);}
+.entrada{
+  font-size:clamp(1.1rem,2.6vw,1.3rem);
+  color:var(--tinta-suave);max-width:34ch;margin-top:1.25rem;
+}
+.selector{margin-top:2rem;}
+.selector p{font-variation-settings:'wdth' 100,'wght' 700;margin-bottom:.7rem;}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;}
+.chip{
+  font-family:inherit;font-size:1rem;
+  font-variation-settings:'wdth' 100,'wght' 700;
+  color:var(--tinta);background:transparent;
+  border:1.5px solid var(--linea);padding:.6rem 1rem;cursor:pointer;
+  transition:border-color .2s ease,color .2s ease;
+}
+.chip:hover{border-color:var(--tinta-suave);}
+.chip[aria-selected="true"]{
+  border-color:var(--acento);color:var(--sobre-acento);background:var(--acento);
+}
+.btn{
+  display:inline-block;text-decoration:none;text-align:center;
+  font-variation-settings:'wdth' 110,'wght' 800;font-size:1.1rem;
+  background:var(--acento);color:var(--sobre-acento);
+  padding:.95rem 1.6rem;transition:background .35s ease;
+}
+.btn:hover{filter:brightness(1.08);}
+
+/* ---- teléfono ---- */
+.demo{display:flex;justify-content:flex-start;}
+.telefono{
+  width:min(100%,320px);
+  border:10px solid var(--tinta);border-radius:34px;
+  background:var(--papel-hondo);padding:1.15rem 1.05rem 1.05rem;
+  box-shadow:0 22px 50px -24px var(--sombra);
+}
+.app-top{
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-size:.82rem;color:var(--tinta-suave);
+  font-variation-settings:'wdth' 100,'wght' 600;
+}
+.app-total{margin-top:1.4rem;}
+.app-etiqueta{display:block;font-size:.9rem;color:var(--tinta-suave);}
+.app-cifra{
+  display:block;font-size:2.9rem;line-height:1;margin-top:.15rem;
+  font-variation-settings:'wdth' 112,'wght' 800;
+  font-variant-numeric:tabular-nums;letter-spacing:-.03em;
+  color:var(--acento);transition:color .35s ease;
+}
+.app-lista{list-style:none;margin:1.4rem 0 0;padding:0;
+  display:flex;flex-direction:column;gap:.9rem;}
+.app-lista li{
+  display:grid;grid-template-columns:auto 1fr auto;gap:.7rem;align-items:baseline;
+  padding-bottom:.9rem;border-bottom:1px solid var(--linea);font-size:.92rem;
+}
+.app-lista li:last-child{border-bottom:0;padding-bottom:0;}
+.l-marca{color:var(--tinta-suave);font-variant-numeric:tabular-nums;font-size:.82rem;}
+.l-quien{font-variation-settings:'wdth' 100,'wght' 700;}
+.l-quien em{display:block;font-style:normal;font-size:.82rem;
+  color:var(--tinta-suave);font-variation-settings:'wdth' 100,'wght' 400;}
+.l-monto{font-variant-numeric:tabular-nums;font-variation-settings:'wdth' 100,'wght' 700;}
+.app-accion{
+  margin-top:1.3rem;text-align:center;padding:.8rem;
+  background:var(--acento);color:var(--sobre-acento);
+  font-variation-settings:'wdth' 105,'wght' 800;font-size:.98rem;
+  transition:background .35s ease;
+}
+
+/* ---- cuentas ---- */
+.cuentas{padding-block:clamp(2.5rem,6vw,4rem);border-top:1px solid var(--linea);}
+h2{font-size:clamp(1.9rem,5.5vw,2.9rem);}
+.ledger{margin:2rem 0 0;display:flex;flex-direction:column;}
+.ledger .fila{
+  display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;
+  gap:.5rem 1.5rem;padding-block:1.05rem;border-bottom:1px solid var(--linea);
+}
+.ledger dt{font-size:clamp(1.1rem,3vw,1.35rem);font-variation-settings:'wdth' 104,'wght' 600;}
+.ledger dd{
+  margin:0;font-variant-numeric:tabular-nums;text-align:right;
+  font-size:clamp(1.1rem,3vw,1.35rem);
+  font-variation-settings:'wdth' 100,'wght' 800;
+  color:var(--acento);transition:color .35s ease;
+}
+
+/* ---- dudas ---- */
+.dudas{padding-block:clamp(2.5rem,6vw,4rem);border-top:1px solid var(--linea);}
+.lista-dudas{margin-top:2rem;display:grid;gap:2rem;}
+@media (min-width:760px){.lista-dudas{grid-template-columns:repeat(3,1fr);gap:2.5rem;}}
+.duda h3{font-size:1.2rem;font-variation-settings:'wdth' 104,'wght' 700;}
+.duda p{margin-top:.6rem;color:var(--tinta-suave);max-width:36ch;}
+
+/* ---- apuntarme ---- */
+.apuntarme{padding-block:clamp(2.5rem,6vw,4rem);border-top:1px solid var(--linea);}
+.apuntarme .entrada{margin-top:1rem;max-width:48ch;}
+form{margin-top:2rem;display:grid;gap:1.1rem;max-width:420px;}
+label{font-variation-settings:'wdth' 100,'wght' 700;font-size:.95rem;display:block;margin-bottom:.35rem;}
+input,select{
+  font-family:inherit;font-size:1.05rem;width:100%;
+  padding:.8rem .9rem;color:var(--tinta);
+  background:var(--papel-hondo);border:1.5px solid var(--linea);
+}
+input:focus,select:focus{border-color:var(--acento);}
+button.btn{border:0;cursor:pointer;font-family:inherit;}
+.gracias{
+  margin-top:2rem;padding:1.3rem;border-left:5px solid var(--acento);
+  background:var(--papel-hondo);max-width:420px;
+}
+.gracias strong{display:block;font-size:1.2rem;font-variation-settings:'wdth' 110,'wght' 800;}
+.gracias p{margin-top:.4rem;color:var(--tinta-suave);}
+
+/* ---- pie ---- */
+.pie{
+  padding-block:2rem 3rem;border-top:1px solid var(--linea);
+  display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-between;
+  font-size:.9rem;color:var(--tinta-suave);
+}
+.aviso{font-size:.82rem;}
+
+@media (min-width:900px){
+  .hero{grid-template-columns:minmax(0,1.05fr) auto;align-items:start;column-gap:4rem;}
+  .hero-texto{grid-column:1;grid-row:1;}
+  .hero-cta{grid-column:1;grid-row:2;}
+  .demo{grid-column:2;grid-row:1 / span 2;justify-content:flex-end;}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition-duration:0ms !important;}
+}
+</style>
+
+<div class="limite">
+  <header class="barra">
+    <p class="marca">Libreta</p>
+    <a class="btn-chico" href="#apuntarme">Apuntarme</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-texto">
+        <h1>Tu cuaderno, pero saca las cuentas solo.</h1>
+        <p class="entrada">Citas, órdenes, ventas y el corte del día. En el teléfono, detrás del mostrador, sin cambiar cómo trabajas.</p>
+        <div class="selector">
+          <p id="rotulo-nicho">¿Qué negocio tienes?</p>
+          <div class="chips" role="tablist" aria-labelledby="rotulo-nicho">
+            <button class="chip" type="button" role="tab" aria-selected="true" data-nicho-btn="barberia">Barbería</button>
+            <button class="chip" type="button" role="tab" aria-selected="false" data-nicho-btn="taller">Taller</button>
+            <button class="chip" type="button" role="tab" aria-selected="false" data-nicho-btn="tienda">Tienda</button>
+            <button class="chip" type="button" role="tab" aria-selected="false" data-nicho-btn="comida">Comida</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo">
+        <div class="telefono">
+          <div class="app-top">
+            <span>Hoy, martes</span>
+            <span>9:41</span>
+          </div>
+          <div class="app-total">
+            <span class="app-etiqueta" data-campo="rotulo">Vendido hoy</span>
+            <strong class="app-cifra" data-campo="total">$2,450</strong>
+          </div>
+          <ul class="app-lista" data-campo="lista" aria-live="polite">
+            <li><span class="l-marca">3:30</span><span class="l-quien">Luis Ramírez<em>Corte y barba</em></span><span class="l-monto">$250</span></li>
+            <li><span class="l-marca">4:15</span><span class="l-quien">Don Beto<em>Corte</em></span><span class="l-monto">$150</span></li>
+            <li><span class="l-marca">5:00</span><span class="l-quien">Ale Fuentes<em>Tinte</em></span><span class="l-monto">$600</span></li>
+          </ul>
+          <div class="app-accion" data-campo="accion">Cobrar un corte</div>
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <a class="btn" href="#apuntarme">Avísame cuando abra</a>
+      </div>
+    </section>
+
+    <section class="cuentas">
+      <h2>Lo que te contesta al cerrar el día</h2>
+      <dl class="ledger" data-campo="ledger">
+        <div class="fila"><dt>¿Cuánto vendí hoy?</dt><dd>$2,450</dd></div>
+        <div class="fila"><dt>¿Quién viene mañana?</dt><dd>6 citas</dd></div>
+        <div class="fila"><dt>¿Quién me debe?</dt><dd>$1,200 de 4 personas</dd></div>
+        <div class="fila"><dt>¿Qué se me está acabando?</dt><dd>3 productos</dd></div>
+      </dl>
+    </section>
+
+    <section class="dudas">
+      <h2>Lo que todos preguntan</h2>
+      <div class="lista-dudas">
+        <div class="duda">
+          <h3>«No soy bueno con la tecnología»</h3>
+          <p>Si mandas un WhatsApp, puedes con esto. Se abre en tres botones: cobrar, agendar y ver el día.</p>
+        </div>
+        <div class="duda">
+          <h3>«No tengo computadora»</h3>
+          <p>No hace falta. Se usa desde el mismo teléfono con el que lees esto.</p>
+        </div>
+        <div class="duda">
+          <h3>«¿Tengo que pasar todo mi cuaderno?»</h3>
+          <p>No. Empiezas con la venta de hoy y el cuaderno se queda donde está.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="apuntarme" id="apuntarme">
+      <h2>Todavía no está listo.</h2>
+      <p class="entrada">Lo estoy construyendo. Déjame cómo avisarte y te escribo el día que abra — y si me dices qué te falta hoy en tu negocio, eso es lo que construyo primero.</p>
+      <form id="forma-espera" novalidate>
+        <div>
+          <label for="contacto">WhatsApp o correo</label>
+          <input id="contacto" name="contacto" type="text" autocomplete="email" placeholder="55 1234 5678" required>
+        </div>
+        <div>
+          <label for="negocio">¿Qué negocio tienes?</label>
+          <select id="negocio" name="negocio">
+            <option value="barberia">Barbería o estética</option>
+            <option value="taller">Taller o servicio técnico</option>
+            <option value="tienda">Tienda o abarrotes</option>
+            <option value="comida">Negocio de comida</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+        <button class="btn" type="submit">Avísame cuando abra</button>
+      </form>
+      <div class="gracias" id="gracias" hidden>
+        <strong>Quedas apuntado.</strong>
+        <p id="gracias-detalle">Te escribo en cuanto abra.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p>Libreta — para negocios que hoy llevan todo en papel.</p>
+    <p class="aviso">Vista previa del diseño: el registro todavía no guarda datos.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var NICHOS={
+    barberia:{
+      rotulo:"Vendido hoy", total:"$2,450", accion:"Cobrar un corte",
+      lista:[["3:30","Luis Ramírez","Corte y barba","$250"],
+             ["4:15","Don Beto","Corte","$150"],
+             ["5:00","Ale Fuentes","Tinte","$600"]],
+      ledger:[["¿Cuánto vendí hoy?","$2,450"],
+              ["¿Quién viene mañana?","6 citas"],
+              ["¿Quién me debe?","$1,200 de 4 personas"],
+              ["¿Qué se me está acabando?","3 productos"]]
+    },
+    taller:{
+      rotulo:"Facturado hoy", total:"$8,900", accion:"Abrir una orden",
+      lista:[["120","Jetta 2016","Cambio de balatas","$1,800"],
+             ["121","Nissan March","Afinación","$2,400"],
+             ["122","Tsuru","Clutch","$4,700"]],
+      ledger:[["¿Cuánto facturé hoy?","$8,900"],
+              ["¿Qué entrego mañana?","4 órdenes"],
+              ["¿Quién me debe?","$6,400 de 3 clientes"],
+              ["¿Qué refacción me falta?","5 piezas"]]
+    },
+    tienda:{
+      rotulo:"Vendido hoy", total:"$3,180", accion:"Cobrar una venta",
+      lista:[["18:02","Venta","3 productos","$340"],
+             ["17:41","Doña Mari","Fiado","$120"],
+             ["17:15","Venta","Refrescos","$95"]],
+      ledger:[["¿Cuánto vendí hoy?","$3,180"],
+              ["¿Cuánto hay en caja?","$1,940"],
+              ["¿Quién me debe?","$890 de 7 fiados"],
+              ["¿Qué se está acabando?","12 productos"]]
+    },
+    comida:{
+      rotulo:"Vendido hoy", total:"$4,320", accion:"Tomar un pedido",
+      lista:[["Mesa 4","2 tacos de pastor","Para comer aquí","$190"],
+             ["Para llevar","Orden de suadero","Con todo","$150"],
+             ["Mesa 2","3 quesadillas","Sin cebolla","$210"]],
+      ledger:[["¿Cuánto vendí hoy?","$4,320"],
+              ["¿Qué platillo dejó más?","Pastor, $1,180"],
+              ["¿Cuánto me costó cocinar?","$1,510"],
+              ["¿Qué insumo me falta?","6 insumos"]]
+    }
+  };
+
+  var raiz=document.documentElement;
+  var chips=document.querySelectorAll("[data-nicho-btn]");
+  var campos={};
+  document.querySelectorAll("[data-campo]").forEach(function(el){campos[el.dataset.campo]=el;});
+
+  function texto(el,valor){ if(el) el.textContent=valor; }
+
+  function pinta(clave){
+    var d=NICHOS[clave]; if(!d) return;
+    raiz.setAttribute("data-nicho",clave);
+    texto(campos.rotulo,d.rotulo);
+    texto(campos.total,d.total);
+    texto(campos.accion,d.accion);
+
+    campos.lista.innerHTML="";
+    d.lista.forEach(function(f){
+      var li=document.createElement("li");
+      var a=document.createElement("span"); a.className="l-marca"; a.textContent=f[0];
+      var b=document.createElement("span"); b.className="l-quien"; b.textContent=f[1];
+      var em=document.createElement("em"); em.textContent=f[2]; b.appendChild(em);
+      var c=document.createElement("span"); c.className="l-monto"; c.textContent=f[3];
+      li.append(a,b,c); campos.lista.appendChild(li);
+    });
+
+    campos.ledger.innerHTML="";
+    d.ledger.forEach(function(f){
+      var fila=document.createElement("div"); fila.className="fila";
+      var dt=document.createElement("dt"); dt.textContent=f[0];
+      var dd=document.createElement("dd"); dd.textContent=f[1];
+      fila.append(dt,dd); campos.ledger.appendChild(fila);
+    });
+
+    chips.forEach(function(c){
+      c.setAttribute("aria-selected", c.dataset.nichoBtn===clave ? "true":"false");
+    });
+    var sel=document.getElementById("negocio");
+    if(sel) sel.value=clave;
+  }
+
+  chips.forEach(function(c){
+    c.addEventListener("click",function(){ pinta(c.dataset.nichoBtn); });
+  });
+
+  var forma=document.getElementById("forma-espera");
+  forma.addEventListener("submit",function(e){
+    e.preventDefault();
+    var contacto=document.getElementById("contacto");
+    if(!contacto.value.trim()){ contacto.focus(); return; }
+    var sel=document.getElementById("negocio");
+    var nombre=sel.options[sel.selectedIndex].textContent.toLowerCase();
+    document.getElementById("gracias-detalle").textContent=
+      "Te escribo a "+contacto.value.trim()+" en cuanto abra para "+nombre+".";
+    forma.hidden=true;
+    document.getElementById("gracias").hidden=false;
+  });
+})();
+</script>
+
+</body>
+</html>
