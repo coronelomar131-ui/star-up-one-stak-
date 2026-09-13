@@ -80,6 +80,15 @@ Pendiente: **la CSP lleva `'unsafe-inline'`** porque el CSS y el
 JavaScript van embebidos. Cuando haya paso de compilación, moverlos a
 archivos aparte y quitar esa excepción.
 
+## El producto
+
+El modelo de datos ya está en pie, con el aislamiento entre negocios
+probado. Ver `docs/modelo-de-datos.md`.
+
+Siguiente: la aplicación. Un solo flujo de punta a punta —apuntar una
+venta y ver el cierre del día— antes de abrir el abanico a los cuatro
+giros.
+
 ## Pendiente
 
 - El formulario de lista de espera todavía no guarda nada. Falta conectarlo
