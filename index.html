@@ -73,7 +73,7 @@ body{
 }
 .limite{max-width:1120px;margin-inline:auto;padding-inline:20px;}
 h1,h2,h3{
-  font-variation-settings:'wdth' 116,'wght' 800;
+  font-stretch:116%;font-weight:800;
   line-height:.98;
   letter-spacing:-.02em;
   text-wrap:balance;
@@ -88,9 +88,9 @@ a{color:inherit;}
   display:flex;align-items:center;justify-content:space-between;gap:1rem;
   padding-block:1.1rem;border-bottom:1px solid var(--linea);
 }
-.marca{font-variation-settings:'wdth' 120,'wght' 900;font-size:1.3rem;letter-spacing:-.03em;}
+.marca{font-stretch:120%;font-weight:900;font-size:1.3rem;letter-spacing:-.03em;}
 .btn-chico{
-  font-variation-settings:'wdth' 100,'wght' 700;
+  font-stretch:100%;font-weight:700;
   font-size:.95rem;text-decoration:none;padding:.5rem .9rem;
   border:1.5px solid var(--tinta);
 }
@@ -104,26 +104,29 @@ h1{font-size:clamp(2.9rem,10.5vw,5.25rem);}
   color:var(--tinta-suave);max-width:34ch;margin-top:1.25rem;
 }
 .selector{margin-top:2rem;}
-.selector p{font-variation-settings:'wdth' 100,'wght' 700;margin-bottom:.7rem;}
-.chips{display:flex;flex-wrap:wrap;gap:.5rem;}
+.selector p{font-stretch:100%;font-weight:700;margin-bottom:.7rem;}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;}
+@media (min-width:560px){.chips{display:flex;flex-wrap:wrap;}}
 .chip{
   font-family:inherit;font-size:1rem;
-  font-variation-settings:'wdth' 100,'wght' 700;
+  font-stretch:100%;font-weight:700;
   color:var(--tinta);background:transparent;
   border:1.5px solid var(--linea);padding:.6rem 1rem;cursor:pointer;
   transition:border-color .2s ease,color .2s ease;
 }
 .chip:hover{border-color:var(--tinta-suave);}
-.chip[aria-selected="true"]{
+.chip[aria-pressed="true"]{
   border-color:var(--acento);color:var(--sobre-acento);background:var(--acento);
 }
 .btn{
   display:inline-block;text-decoration:none;text-align:center;
-  font-variation-settings:'wdth' 110,'wght' 800;font-size:1.1rem;
+  font-stretch:110%;font-weight:800;font-size:1.1rem;
   background:var(--acento);color:var(--sobre-acento);
   padding:.95rem 1.6rem;transition:background .35s ease;
 }
 .btn:hover{filter:brightness(1.08);}
+.hero-cta .btn{width:100%;}
+@media (min-width:560px){.hero-cta .btn{width:auto;}}
 
 /* ---- teléfono ---- */
 .demo{display:flex;justify-content:flex-start;}
@@ -136,13 +139,13 @@ h1{font-size:clamp(2.9rem,10.5vw,5.25rem);}
 .app-top{
   display:flex;justify-content:space-between;align-items:baseline;
   font-size:.82rem;color:var(--tinta-suave);
-  font-variation-settings:'wdth' 100,'wght' 600;
+  font-stretch:100%;font-weight:600;
 }
 .app-total{margin-top:1.4rem;}
 .app-etiqueta{display:block;font-size:.9rem;color:var(--tinta-suave);}
 .app-cifra{
   display:block;font-size:2.9rem;line-height:1;margin-top:.15rem;
-  font-variation-settings:'wdth' 112,'wght' 800;
+  font-stretch:112%;font-weight:800;
   font-variant-numeric:tabular-nums;letter-spacing:-.03em;
   color:var(--acento);transition:color .35s ease;
 }
@@ -154,14 +157,14 @@ h1{font-size:clamp(2.9rem,10.5vw,5.25rem);}
 }
 .app-lista li:last-child{border-bottom:0;padding-bottom:0;}
 .l-marca{color:var(--tinta-suave);font-variant-numeric:tabular-nums;font-size:.82rem;}
-.l-quien{font-variation-settings:'wdth' 100,'wght' 700;}
+.l-quien{font-stretch:100%;font-weight:700;}
 .l-quien em{display:block;font-style:normal;font-size:.82rem;
-  color:var(--tinta-suave);font-variation-settings:'wdth' 100,'wght' 400;}
-.l-monto{font-variant-numeric:tabular-nums;font-variation-settings:'wdth' 100,'wght' 700;}
+  color:var(--tinta-suave);font-stretch:100%;font-weight:400;}
+.l-monto{font-variant-numeric:tabular-nums;font-stretch:100%;font-weight:700;}
 .app-accion{
   margin-top:1.3rem;text-align:center;padding:.8rem;
   background:var(--acento);color:var(--sobre-acento);
-  font-variation-settings:'wdth' 105,'wght' 800;font-size:.98rem;
+  font-stretch:105%;font-weight:800;font-size:.98rem;
   transition:background .35s ease;
 }
 
@@ -173,11 +176,11 @@ h2{font-size:clamp(1.9rem,5.5vw,2.9rem);}
   display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;
   gap:.5rem 1.5rem;padding-block:1.05rem;border-bottom:1px solid var(--linea);
 }
-.ledger dt{font-size:clamp(1.1rem,3vw,1.35rem);font-variation-settings:'wdth' 104,'wght' 600;}
+.ledger dt{font-size:clamp(1.1rem,3vw,1.35rem);font-stretch:104%;font-weight:600;}
 .ledger dd{
-  margin:0;font-variant-numeric:tabular-nums;text-align:right;
+  margin:0;margin-left:auto;font-variant-numeric:tabular-nums;text-align:right;
   font-size:clamp(1.1rem,3vw,1.35rem);
-  font-variation-settings:'wdth' 100,'wght' 800;
+  font-stretch:100%;font-weight:800;
   color:var(--acento);transition:color .35s ease;
 }
 
@@ -185,14 +188,14 @@ h2{font-size:clamp(1.9rem,5.5vw,2.9rem);}
 .dudas{padding-block:clamp(2.5rem,6vw,4rem);border-top:1px solid var(--linea);}
 .lista-dudas{margin-top:2rem;display:grid;gap:2rem;}
 @media (min-width:760px){.lista-dudas{grid-template-columns:repeat(3,1fr);gap:2.5rem;}}
-.duda h3{font-size:1.2rem;font-variation-settings:'wdth' 104,'wght' 700;}
+.duda h3{font-size:1.2rem;font-stretch:104%;font-weight:700;}
 .duda p{margin-top:.6rem;color:var(--tinta-suave);max-width:36ch;}
 
 /* ---- apuntarme ---- */
 .apuntarme{padding-block:clamp(2.5rem,6vw,4rem);border-top:1px solid var(--linea);}
 .apuntarme .entrada{margin-top:1rem;max-width:48ch;}
 form{margin-top:2rem;display:grid;gap:1.1rem;max-width:420px;}
-label{font-variation-settings:'wdth' 100,'wght' 700;font-size:.95rem;display:block;margin-bottom:.35rem;}
+label{font-stretch:100%;font-weight:700;font-size:.95rem;display:block;margin-bottom:.35rem;}
 input,select{
   font-family:inherit;font-size:1.05rem;width:100%;
   padding:.8rem .9rem;color:var(--tinta);
@@ -204,7 +207,7 @@ button.btn{border:0;cursor:pointer;font-family:inherit;}
   margin-top:2rem;padding:1.3rem;border-left:5px solid var(--acento);
   background:var(--papel-hondo);max-width:420px;
 }
-.gracias strong{display:block;font-size:1.2rem;font-variation-settings:'wdth' 110,'wght' 800;}
+.gracias strong{display:block;font-size:1.2rem;font-stretch:110%;font-weight:800;}
 .gracias p{margin-top:.4rem;color:var(--tinta-suave);}
 
 /* ---- pie ---- */
@@ -216,6 +219,10 @@ button.btn{border:0;cursor:pointer;font-family:inherit;}
 .aviso{font-size:.82rem;}
 
 @media (min-width:900px){
+  .apuntarme{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);column-gap:4rem;align-items:start;}
+  .apuntarme > h2{grid-column:1;grid-row:1;}
+  .apuntarme > .entrada{grid-column:1;grid-row:2;}
+  .apuntarme > form,.apuntarme > .gracias{grid-column:2;grid-row:1 / span 2;margin-top:0;}
   .hero{grid-template-columns:minmax(0,1.05fr) auto;align-items:start;column-gap:4rem;}
   .hero-texto{grid-column:1;grid-row:1;}
   .hero-cta{grid-column:1;grid-row:2;}
@@ -239,11 +246,11 @@ button.btn{border:0;cursor:pointer;font-family:inherit;}
         <p class="entrada">Citas, órdenes, ventas y el corte del día. En el teléfono, detrás del mostrador, sin cambiar cómo trabajas.</p>
         <div class="selector">
           <p id="rotulo-nicho">¿Qué negocio tienes?</p>
-          <div class="chips" role="tablist" aria-labelledby="rotulo-nicho">
-            <button class="chip" type="button" role="tab" aria-selected="true" data-nicho-btn="barberia">Barbería</button>
-            <button class="chip" type="button" role="tab" aria-selected="false" data-nicho-btn="taller">Taller</button>
-            <button class="chip" type="button" role="tab" aria-selected="false" data-nicho-btn="tienda">Tienda</button>
-            <button class="chip" type="button" role="tab" aria-selected="false" data-nicho-btn="comida">Comida</button>
+          <div class="chips" role="group" aria-labelledby="rotulo-nicho">
+            <button class="chip" type="button" aria-pressed="true" data-nicho-btn="barberia">Barbería</button>
+            <button class="chip" type="button" aria-pressed="false" data-nicho-btn="taller">Taller</button>
+            <button class="chip" type="button" aria-pressed="false" data-nicho-btn="tienda">Tienda</button>
+            <button class="chip" type="button" aria-pressed="false" data-nicho-btn="comida">Comida</button>
           </div>
         </div>
       </div>
@@ -254,11 +261,11 @@ button.btn{border:0;cursor:pointer;font-family:inherit;}
             <span>Hoy, martes</span>
             <span>9:41</span>
           </div>
-          <div class="app-total">
+          <div class="app-total" aria-live="polite">
             <span class="app-etiqueta" data-campo="rotulo">Vendido hoy</span>
             <strong class="app-cifra" data-campo="total">$2,450</strong>
           </div>
-          <ul class="app-lista" data-campo="lista" aria-live="polite">
+          <ul class="app-lista" data-campo="lista">
             <li><span class="l-marca">3:30</span><span class="l-quien">Luis Ramírez<em>Corte y barba</em></span><span class="l-monto">$250</span></li>
             <li><span class="l-marca">4:15</span><span class="l-quien">Don Beto<em>Corte</em></span><span class="l-monto">$150</span></li>
             <li><span class="l-marca">5:00</span><span class="l-quien">Ale Fuentes<em>Tinte</em></span><span class="l-monto">$600</span></li>
@@ -411,7 +418,7 @@ button.btn{border:0;cursor:pointer;font-family:inherit;}
     });
 
     chips.forEach(function(c){
-      c.setAttribute("aria-selected", c.dataset.nichoBtn===clave ? "true":"false");
+      c.setAttribute("aria-pressed", c.dataset.nichoBtn===clave ? "true":"false");
     });
     var sel=document.getElementById("negocio");
     if(sel) sel.value=clave;
