@@ -46,21 +46,39 @@ Prelanzamiento. Lo único construido es la landing.
 - **Movimiento:** un solo momento — al elegir vertical cambian el color, la
   pantalla del teléfono y las cifras. Nada aparece al hacer scroll.
 
+## Lista de espera
+
+El formulario escribe en Supabase (proyecto `apuntalo`, tabla
+`lista_espera`). La llave que va en el HTML es la **publicable**: es
+pública por diseño y no da acceso a nada por sí sola.
+
+Lo que la protege es la seguridad a nivel de fila, activada antes del
+primer registro. `anon` tiene una sola política, de `INSERT`. No existe
+política de `SELECT`, `UPDATE` ni `DELETE`, así que desde el navegador
+nadie puede leer ni borrar la lista aunque tenga la llave a la vista.
+
+Verificado con peticiones reales, no supuesto:
+
+| Prueba | Resultado |
+|--------|-----------|
+| `INSERT` como anon | 201, se guarda |
+| `SELECT` como anon | `[]` — no devuelve nada |
+| `DELETE` como anon | la fila sobrevive |
+| Contacto repetido | 409, y la interfaz responde igual que un alta nueva para no revelar quién está en la lista |
+| Giro inválido | 400, lo rechaza la restricción |
+
+Para leer los registros: panel de Supabase o llave de servicio. Nunca
+desde el navegador.
+
 ## Seguridad
 
 Auditado con Cyber Neo. Riesgo bajo: sin secretos expuestos, sin XSS
 —todas las escrituras al DOM usan `textContent` o `createElement`— y sin
 dependencias de terceros que auditar.
 
-Dos cosas pendientes, ambas para cuando se conecte el backend:
-
-1. **Supabase sin RLS sería crítico.** La llave `anon` es pública por
-   diseño; lo único que protege la tabla de lista de espera es la
-   seguridad a nivel de fila. Hay que activarla y permitir solo `INSERT`
-   a `anon`, sin `SELECT`, antes de guardar el primer registro.
-2. **La CSP lleva `'unsafe-inline'`** porque el CSS y el JavaScript van
-   embebidos. Cuando haya paso de compilación, moverlos a archivos aparte
-   y quitar esa excepción.
+Pendiente: **la CSP lleva `'unsafe-inline'`** porque el CSS y el
+JavaScript van embebidos. Cuando haya paso de compilación, moverlos a
+archivos aparte y quitar esa excepción.
 
 ## Pendiente
 

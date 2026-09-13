@@ -223,6 +223,8 @@ button.btn{border:0;cursor:pointer;font-family:inherit;}
   background:var(--papel-hondo);max-width:420px;
 }
 .gracias strong{display:block;font-size:1.2rem;font-stretch:110%;font-weight:800;}
+.gracias.falla{border-left-color:#CE1B2B;}
+button[disabled]{opacity:.6;cursor:progress;}
 .gracias p{margin-top:.4rem;color:var(--tinta-suave);}
 
 /* ---- pie ---- */
@@ -339,7 +341,7 @@ button.btn{border:0;cursor:pointer;font-family:inherit;}
     <section class="apuntarme" id="apuntarme">
       <h2>Todavía no está listo.</h2>
       <p class="entrada">Lo estoy construyendo. Déjame cómo avisarte y te escribo el día que abra — y si me dices qué te falta hoy en tu negocio, eso es lo que construyo primero.</p>
-      <form id="forma-espera" method="post" novalidate>
+      <form id="forma-espera" method="post" data-destino="https://hvhwauommivdxbvtbbow.supabase.co" data-llave="sb_publishable_8wvzr-THxvqB8O8mQYzeMA_iz7tf4KT" novalidate>
         <div>
           <label for="contacto">WhatsApp o correo</label>
           <input id="contacto" name="contacto" type="text" placeholder="55 1234 5678" required>
@@ -482,19 +484,53 @@ button.btn{border:0;cursor:pointer;font-family:inherit;}
   });
 
   var forma=document.getElementById("forma-espera");
+  var caja=document.getElementById("gracias");
+  var detalle=document.getElementById("gracias-detalle");
+  var titulo=caja.querySelector("strong");
+  var boton=forma.querySelector("button[type=submit]");
+
+  function cerrar(encabezado,texto,falla){
+    titulo.textContent=encabezado;
+    detalle.textContent=texto;
+    caja.classList.toggle("falla",!!falla);
+    caja.hidden=false;
+    if(!falla) forma.hidden=true;
+  }
+
   forma.addEventListener("submit",function(e){
     e.preventDefault();
     var contacto=document.getElementById("contacto");
     if(!contacto.value.trim()){ contacto.focus(); return; }
     var sel=document.getElementById("negocio");
+    var giro=sel.value;
     var nombre=sel.options[sel.selectedIndex].textContent.toLowerCase();
     var pedido=document.getElementById("para-que").value.trim();
-    document.getElementById("gracias-detalle").textContent=
-      pedido
-        ? "Te escribo a "+contacto.value.trim()+" en cuanto abra para "+nombre+". Leo lo que me pediste y, si varios lo piden, eso construyo primero."
-        : "Te escribo a "+contacto.value.trim()+" en cuanto abra para "+nombre+".";
-    forma.hidden=true;
-    document.getElementById("gracias").hidden=false;
+    var destino=forma.dataset.destino, llave=forma.dataset.llave;
+
+    var listo="Te escribo a "+contacto.value.trim()+" en cuanto abra para "+nombre+"."
+      +(pedido?" Leo lo que me pediste y, si varios lo piden, eso construyo primero.":"");
+
+    if(!destino||!llave){
+      cerrar("Vista previa","Así se ve la confirmación. Esta versión no guarda nada todavía; la publicada sí.",false);
+      return;
+    }
+
+    boton.disabled=true; boton.textContent="Apuntando…";
+    fetch(destino+"/rest/v1/lista_espera",{
+      method:"POST",
+      headers:{"apikey":llave,"Authorization":"Bearer "+llave,
+               "Content-Type":"application/json","Prefer":"return=minimal"},
+      body:JSON.stringify({contacto:contacto.value.trim(),giro:giro,
+                           necesidad:pedido||null})
+    }).then(function(r){
+      // 409 es contacto repetido. Se responde igual que un alta nueva para no
+      // revelar quién está en la lista.
+      if(r.ok||r.status===409){ cerrar("Quedas apuntado.",listo,false); return; }
+      throw new Error("HTTP "+r.status);
+    }).catch(function(){
+      boton.disabled=false; boton.textContent="Avísame cuando abra";
+      cerrar("No se pudo guardar","Revisa tu conexión y vuelve a intentarlo. Si sigue fallando, escríbeme por Instagram y te apunto a mano.",true);
+    });
   });
 })();
 </script>
