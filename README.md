@@ -1,4 +1,4 @@
-# Neto
+# Apúntalo
 
 Sistema de gestión para negocios chicos: **barberías y estéticas, talleres y
 servicios técnicos, tiendas, y negocios de comida**.
@@ -17,9 +17,10 @@ el cliente puede pedir lo que le falte.
 **Mercado:** México. Los ejemplos de la landing usan vocabulario mexicano
 a propósito (pastor, suadero, balatas, fiado).
 
-**Nombre:** «Neto», por la utilidad neta y por «la neta». Pendiente: existe
-la cadena de supermercados Tiendas Neto en México, así que conviene revisar
-el roce de marca antes de registrar nada.
+**Nombre:** «Apúntalo». Es la única palabra que le dice al dueño qué hacer
+con el producto: alguien que desconfía de «los sistemas» lo entiende sin
+que se lo expliquen. Sirve igual en los cuatro giros —se apunta la cita, la
+orden, la venta, el pedido— y no se escribe mal después de oírlo una vez.
 
 ## Estado
 
@@ -47,6 +48,8 @@ Prelanzamiento. Lo único construido es la landing.
 
 - El formulario de lista de espera todavía no guarda nada. Falta conectarlo
   a Supabase y desplegar en Vercel.
-- Dominio. Todo lo corto está tomado; libres al revisar: netopos.com y
-  puroneto.com (11.25 USD/año cada uno).
-- Revisar roce de marca con Tiendas Neto antes de registrar.
+- Dominio. Se revisaron más de 50: toda palabra real del español está
+  registrada en .com, .mx y .app. Libres al momento de revisar:
+  apuntalo.mx (49.99 USD/año) y apuntalo.lat (1.99 USD/año).
+- Apartar las cuentas de TikTok e Instagram, que para este producto pesan
+  más que el dominio.
