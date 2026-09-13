@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Libreta: citas, órdenes, ventas y el corte del día para barberías, talleres, tiendas y negocios de comida.">
+<meta name="description" content="Citas, órdenes, ventas y el corte del día para barberías, talleres, tiendas y negocios de comida.">
 <style>:root{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Libreta</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -184,6 +184,21 @@ h2{font-size:clamp(1.9rem,5.5vw,2.9rem);}
   color:var(--acento);transition:color .35s ease;
 }
 
+/* ---- modulos ---- */
+.modulos{padding-block:clamp(2.5rem,6vw,4rem);border-top:1px solid var(--linea);}
+.modulos .entrada{max-width:54ch;}
+.caja-modulos{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.6rem;}
+.modulo{
+  font-size:1rem;font-stretch:100%;font-weight:600;
+  padding:.55rem 1rem;border:1.5px solid var(--linea);
+  background:var(--papel-hondo);
+}
+.modulo.abierto{
+  border-style:dashed;border-color:var(--acento);color:var(--acento);
+  background:transparent;font-weight:700;
+  transition:color .35s ease,border-color .35s ease;
+}
+
 /* ---- dudas ---- */
 .dudas{padding-block:clamp(2.5rem,6vw,4rem);border-top:1px solid var(--linea);}
 .lista-dudas{margin-top:2rem;display:grid;gap:2rem;}
@@ -196,12 +211,12 @@ h2{font-size:clamp(1.9rem,5.5vw,2.9rem);}
 .apuntarme .entrada{margin-top:1rem;max-width:48ch;}
 form{margin-top:2rem;display:grid;gap:1.1rem;max-width:420px;}
 label{font-stretch:100%;font-weight:700;font-size:.95rem;display:block;margin-bottom:.35rem;}
-input,select{
+input,select,textarea{
   font-family:inherit;font-size:1.05rem;width:100%;
-  padding:.8rem .9rem;color:var(--tinta);
+  padding:.8rem .9rem;color:var(--tinta);line-height:1.45;
   background:var(--papel-hondo);border:1.5px solid var(--linea);
 }
-input:focus,select:focus{border-color:var(--acento);}
+input:focus,select:focus,textarea:focus{border-color:var(--acento);}
 button.btn{border:0;cursor:pointer;font-family:inherit;}
 .gracias{
   margin-top:2rem;padding:1.3rem;border-left:5px solid var(--acento);
@@ -289,6 +304,20 @@ button.btn{border:0;cursor:pointer;font-family:inherit;}
       </dl>
     </section>
 
+    <section class="modulos">
+      <h2>Ya viene armado para tu giro</h2>
+      <p class="entrada">Eliges tu negocio y adentro ya está lo que ese negocio usa todos los días — incluyendo el perfil de cada quien que trabaja contigo. Si te falta algo, me lo pides y lo construyo.</p>
+      <div class="caja-modulos" data-campo="modulos">
+        <span class="modulo">Citas del día</span>
+        <span class="modulo">Clientes y su historial</span>
+        <span class="modulo">Perfil de cada barbero</span>
+        <span class="modulo">Comisiones por barbero</span>
+        <span class="modulo">Productos y existencias</span>
+        <span class="modulo">Caja y cierre del día</span>
+        <span class="modulo abierto">Lo que me pidas</span>
+      </div>
+    </section>
+
     <section class="dudas">
       <h2>Lo que todos preguntan</h2>
       <div class="lista-dudas">
@@ -325,6 +354,10 @@ button.btn{border:0;cursor:pointer;font-family:inherit;}
             <option value="otro">Otro</option>
           </select>
         </div>
+        <div>
+          <label for="para-que">¿Para qué lo necesitas?</label>
+          <textarea id="para-que" name="para-que" rows="3" placeholder="Llevar las comisiones de tres barberos y saber quién me debe."></textarea>
+        </div>
         <button class="btn" type="submit">Avísame cuando abra</button>
       </form>
       <div class="gracias" id="gracias" hidden>
@@ -344,6 +377,8 @@ button.btn{border:0;cursor:pointer;font-family:inherit;}
 (function(){
   var NICHOS={
     barberia:{
+      modulos:["Citas del día","Clientes y su historial","Perfil de cada barbero","Comisiones por barbero","Productos y existencias","Caja y cierre del día"],
+      pista:"Llevar las comisiones de tres barberos y saber quién me debe.",
       rotulo:"Vendido hoy", total:"$2,450", accion:"Cobrar un corte",
       lista:[["3:30","Luis Ramírez","Corte y barba","$250"],
              ["4:15","Don Beto","Corte","$150"],
@@ -354,6 +389,8 @@ button.btn{border:0;cursor:pointer;font-family:inherit;}
               ["¿Qué se me está acabando?","3 productos"]]
     },
     taller:{
+      modulos:["Órdenes de trabajo","Clientes y vehículos","Perfil de cada mecánico","Presupuestos","Refacciones","Caja y cierre del día"],
+      pista:"Saber qué órdenes siguen abiertas y cuánto me deben los clientes.",
       rotulo:"Facturado hoy", total:"$8,900", accion:"Abrir una orden",
       lista:[["120","Jetta 2016","Cambio de balatas","$1,800"],
              ["121","Nissan March","Afinación","$2,400"],
@@ -364,6 +401,8 @@ button.btn{border:0;cursor:pointer;font-family:inherit;}
               ["¿Qué refacción me falta?","5 piezas"]]
     },
     tienda:{
+      modulos:["Ventas del mostrador","Inventario","Fiados","Perfil de cada empleado","Proveedores","Caja y cierre del día"],
+      pista:"Controlar los fiados y que no se me acabe la mercancía.",
       rotulo:"Vendido hoy", total:"$3,180", accion:"Cobrar una venta",
       lista:[["18:02","Venta","3 productos","$340"],
              ["17:41","Doña Mari","Fiado","$120"],
@@ -374,6 +413,8 @@ button.btn{border:0;cursor:pointer;font-family:inherit;}
               ["¿Qué se está acabando?","12 productos"]]
     },
     comida:{
+      modulos:["Pedidos y comandas","Costo por platillo","Insumos","Perfil de cada empleado","Mesas y para llevar","Caja y cierre del día"],
+      pista:"Saber cuánto me cuesta cada platillo y cuál se vende más.",
       rotulo:"Vendido hoy", total:"$4,320", accion:"Tomar un pedido",
       lista:[["Mesa 4","2 tacos de pastor","Para comer aquí","$190"],
              ["Para llevar","Orden de suadero","Con todo","$150"],
@@ -417,6 +458,18 @@ button.btn{border:0;cursor:pointer;font-family:inherit;}
       fila.append(dt,dd); campos.ledger.appendChild(fila);
     });
 
+    campos.modulos.innerHTML="";
+    d.modulos.forEach(function(m){
+      var t=document.createElement("span"); t.className="modulo"; t.textContent=m;
+      campos.modulos.appendChild(t);
+    });
+    var abierto=document.createElement("span");
+    abierto.className="modulo abierto"; abierto.textContent="Lo que me pidas";
+    campos.modulos.appendChild(abierto);
+
+    var pista=document.getElementById("para-que");
+    if(pista) pista.setAttribute("placeholder",d.pista);
+
     chips.forEach(function(c){
       c.setAttribute("aria-pressed", c.dataset.nichoBtn===clave ? "true":"false");
     });
@@ -435,8 +488,11 @@ button.btn{border:0;cursor:pointer;font-family:inherit;}
     if(!contacto.value.trim()){ contacto.focus(); return; }
     var sel=document.getElementById("negocio");
     var nombre=sel.options[sel.selectedIndex].textContent.toLowerCase();
+    var pedido=document.getElementById("para-que").value.trim();
     document.getElementById("gracias-detalle").textContent=
-      "Te escribo a "+contacto.value.trim()+" en cuanto abra para "+nombre+".";
+      pedido
+        ? "Te escribo a "+contacto.value.trim()+" en cuanto abra para "+nombre+". Leo lo que me pediste y, si varios lo piden, eso construyo primero."
+        : "Te escribo a "+contacto.value.trim()+" en cuanto abra para "+nombre+".";
     forma.hidden=true;
     document.getElementById("gracias").hidden=false;
   });
