@@ -371,7 +371,7 @@ button[disabled]{opacity:.6;cursor:progress;}
 
   <footer class="pie">
     <p>Apúntalo — para negocios que hoy llevan todo en papel.</p>
-    <p class="aviso">Vista previa del diseño: el registro todavía no guarda datos.</p>
+    <p class="aviso" data-campo="aviso">Vista previa del diseño: el registro todavía no guarda datos.</p>
   </footer>
 </div>
 
@@ -484,6 +484,11 @@ button[disabled]{opacity:.6;cursor:progress;}
   });
 
   var forma=document.getElementById("forma-espera");
+  if(campos.aviso){
+    campos.aviso.textContent = forma.dataset.destino
+      ? "Tu contacto solo se usa para avisarte cuando abra. Nada más."
+      : "Vista previa del diseño: esta versión no guarda datos.";
+  }
   var caja=document.getElementById("gracias");
   var detalle=document.getElementById("gracias-detalle");
   var titulo=caja.querySelector("strong");
