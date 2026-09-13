@@ -18,5 +18,23 @@ dist/
 .env.*
 !.env.example
 
+# Llaves, certificados y credenciales — nunca al repositorio
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+*.jks
+id_rsa
+id_ed25519
+credentials.json
+service-account*.json
+serviceaccount*.json
+gha-creds-*.json
+.npmrc
+.pypirc
+.netrc
+
 # Reportes generados
 cyber-neo-report-*.md

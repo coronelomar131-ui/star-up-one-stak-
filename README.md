@@ -30,6 +30,8 @@ Prelanzamiento. Lo único construido es la landing.
 
 - `index.html` — landing de prelanzamiento, sin dependencias ni build.
   Se abre directo en el navegador y se despliega como sitio estático.
+- `vercel.json` — cabeceras de seguridad del despliegue: CSP, HSTS,
+  `X-Frame-Options`, `nosniff`, política de referente y de permisos.
 
 ## Diseño
 
@@ -43,6 +45,22 @@ Prelanzamiento. Lo único construido es la landing.
   es como se usa el producto: de pie, detrás del mostrador.
 - **Movimiento:** un solo momento — al elegir vertical cambian el color, la
   pantalla del teléfono y las cifras. Nada aparece al hacer scroll.
+
+## Seguridad
+
+Auditado con Cyber Neo. Riesgo bajo: sin secretos expuestos, sin XSS
+—todas las escrituras al DOM usan `textContent` o `createElement`— y sin
+dependencias de terceros que auditar.
+
+Dos cosas pendientes, ambas para cuando se conecte el backend:
+
+1. **Supabase sin RLS sería crítico.** La llave `anon` es pública por
+   diseño; lo único que protege la tabla de lista de espera es la
+   seguridad a nivel de fila. Hay que activarla y permitir solo `INSERT`
+   a `anon`, sin `SELECT`, antes de guardar el primer registro.
+2. **La CSP lleva `'unsafe-inline'`** porque el CSS y el JavaScript van
+   embebidos. Cuando haya paso de compilación, moverlos a archivos aparte
+   y quitar esa excepción.
 
 ## Pendiente
 
