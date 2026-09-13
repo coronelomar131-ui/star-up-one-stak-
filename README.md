@@ -1,4 +1,4 @@
-# Libreta
+# Neto
 
 Sistema de gestión para negocios chicos: **barberías y estéticas, talleres y
 servicios técnicos, tiendas, y negocios de comida**.
@@ -9,6 +9,17 @@ en barbería es *cita*, en taller es *orden de trabajo*, en comida es *pedido*,
 en tienda es *venta*.
 
 El competidor real no es otro software. Es el cuaderno.
+
+Cada giro llega con sus módulos armados —incluido el perfil de cada
+empleado, porque la comisión y el "quién lo atendió" son parte del día— y
+el cliente puede pedir lo que le falte.
+
+**Mercado:** México. Los ejemplos de la landing usan vocabulario mexicano
+a propósito (pastor, suadero, balatas, fiado).
+
+**Nombre:** «Neto», por la utilidad neta y por «la neta». Pendiente: existe
+la cadena de supermercados Tiendas Neto en México, así que conviene revisar
+el roce de marca antes de registrar nada.
 
 ## Estado
 
@@ -36,4 +47,6 @@ Prelanzamiento. Lo único construido es la landing.
 
 - El formulario de lista de espera todavía no guarda nada. Falta conectarlo
   a Supabase y desplegar en Vercel.
-- Definir nombre y dominio definitivos.
+- Dominio. Todo lo corto está tomado; libres al revisar: netopos.com y
+  puroneto.com (11.25 USD/año cada uno).
+- Revisar roce de marca con Tiendas Neto antes de registrar.
