@@ -9,10 +9,18 @@ because that is the language they speak.
 ## Run it locally
 
 ```bash
-cp .env.example .env.local   # then fill in your project keys
 npm install
 npm run dev
 ```
+
+No configuration needed. The Supabase URL and publishable key live in
+`lib/supabase/config.ts`, hardcoded on purpose: both are public by
+design — the key ships inside every visitor's browser bundle, and the
+same pair already sits in plain sight in the marketing page. What
+protects the data is row level security, not hiding the key.
+
+Set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_KEY` to point a
+deployment at a different project; the environment wins when present.
 
 ## Layout
 
