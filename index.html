@@ -12,236 +12,235 @@
 </head>
 <body>
 <style>
+/* Identifiers in English, copy in Spanish: the shop owner reading this
+   page is Mexican, the person maintaining the code is not necessarily. */
 :root{
-  --papel:#F6F7F5;
-  --papel-hondo:#EBEEE9;
-  --tinta:#12212E;
-  --tinta-suave:#5B6C79;
-  --linea:#D7DCD6;
-  --sombra:rgba(18,33,46,.10);
-  --c-barberia:#2F4BE0;
-  --c-taller:#D95606;
-  --c-tienda:#12784A;
-  --c-comida:#CE1B2B;
-  --acento:var(--c-barberia);
-  --sobre-acento:#FFFFFF;
-  --paso:clamp(1.15rem,3.5vw,1.6rem);
+  --paper:#F6F7F5;
+  --paper-deep:#EBEEE9;
+  --ink:#12212E;
+  --ink-soft:#5B6C79;
+  --rule:#D7DCD6;
+  --shadow:rgba(18,33,46,.10);
+  --c-barbershop:#2F4BE0;
+  --c-workshop:#D95606;
+  --c-store:#12784A;
+  --c-food:#CE1B2B;
+  --accent:var(--c-barbershop);
+  --on-accent:#FFFFFF;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --papel:#0D1821;
-    --papel-hondo:#14232F;
-    --tinta:#EDF2EF;
-    --tinta-suave:#94A7B4;
-    --linea:#22333F;
-    --sombra:rgba(0,0,0,.45);
-    --c-barberia:#7F96FF;
-    --c-taller:#FF9147;
-    --c-tienda:#3BC97E;
-    --c-comida:#FF6B78;
-    --sobre-acento:#0D1821;
+    --paper:#0D1821;
+    --paper-deep:#14232F;
+    --ink:#EDF2EF;
+    --ink-soft:#94A7B4;
+    --rule:#22333F;
+    --shadow:rgba(0,0,0,.45);
+    --c-barbershop:#7F96FF;
+    --c-workshop:#FF9147;
+    --c-store:#3BC97E;
+    --c-food:#FF6B78;
+    --on-accent:#0D1821;
   }
 }
 :root[data-theme="dark"]{
-  --papel:#0D1821;
-  --papel-hondo:#14232F;
-  --tinta:#EDF2EF;
-  --tinta-suave:#94A7B4;
-  --linea:#22333F;
-  --sombra:rgba(0,0,0,.45);
-  --c-barberia:#7F96FF;
-  --c-taller:#FF9147;
-  --c-tienda:#3BC97E;
-  --c-comida:#FF6B78;
-  --sobre-acento:#0D1821;
+  --paper:#0D1821;
+  --paper-deep:#14232F;
+  --ink:#EDF2EF;
+  --ink-soft:#94A7B4;
+  --rule:#22333F;
+  --shadow:rgba(0,0,0,.45);
+  --c-barbershop:#7F96FF;
+  --c-workshop:#FF9147;
+  --c-store:#3BC97E;
+  --c-food:#FF6B78;
+  --on-accent:#0D1821;
 }
-[data-nicho="barberia"]{--acento:var(--c-barberia);}
-[data-nicho="taller"]{--acento:var(--c-taller);}
-[data-nicho="tienda"]{--acento:var(--c-tienda);}
-[data-nicho="comida"]{--acento:var(--c-comida);}
+[data-trade="barbershop"]{--accent:var(--c-barbershop);}
+[data-trade="workshop"]{--accent:var(--c-workshop);}
+[data-trade="store"]{--accent:var(--c-store);}
+[data-trade="food"]{--accent:var(--c-food);}
 
 *{box-sizing:border-box;}
 [hidden]{display:none !important;}
 body{
   margin:0;
-  background:var(--papel);
-  color:var(--tinta);
+  background:var(--paper);
+  color:var(--ink);
   font-family:'Archivo','Helvetica Neue',Arial,sans-serif;
   font-size:1.0625rem;
   line-height:1.5;
   -webkit-font-smoothing:antialiased;
 }
-.limite{max-width:1120px;margin-inline:auto;padding-inline:20px;}
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:20px;}
 h1,h2,h3{
   font-stretch:116%;font-weight:800;
-  line-height:.98;
-  letter-spacing:-.02em;
-  text-wrap:balance;
-  margin:0;
+  line-height:.98;letter-spacing:-.02em;
+  text-wrap:balance;margin:0;
 }
 p{margin:0;}
 a{color:inherit;}
-:focus-visible{outline:3px solid var(--acento);outline-offset:3px;border-radius:2px;}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:2px;}
 
-/* ---- barra ---- */
-.barra{
+/* ---- top bar ---- */
+.topbar{
   display:flex;align-items:center;justify-content:space-between;gap:1rem;
-  padding-block:1.1rem;border-bottom:1px solid var(--linea);
+  padding-block:1.1rem;border-bottom:1px solid var(--rule);
 }
-.marca{font-stretch:120%;font-weight:900;font-size:1.3rem;letter-spacing:-.03em;}
-.btn-chico{
+.wordmark{font-stretch:120%;font-weight:900;font-size:1.3rem;letter-spacing:-.03em;}
+.button-small{
   font-stretch:100%;font-weight:700;
   font-size:.95rem;text-decoration:none;padding:.5rem .9rem;
-  border:1.5px solid var(--tinta);
+  border:1.5px solid var(--ink);
 }
-.btn-chico:hover{background:var(--tinta);color:var(--papel);}
+.button-small:hover{background:var(--ink);color:var(--paper);}
 
 /* ---- hero ---- */
 .hero{display:grid;gap:2.25rem;padding-block:clamp(2.5rem,7vw,4.5rem) clamp(2.5rem,6vw,4rem);}
 h1{font-size:clamp(2.9rem,10.5vw,5.25rem);}
-.entrada{
+.lede{
   font-size:clamp(1.1rem,2.6vw,1.3rem);
-  color:var(--tinta-suave);max-width:34ch;margin-top:1.25rem;
+  color:var(--ink-soft);max-width:34ch;margin-top:1.25rem;
 }
-.selector{margin-top:2rem;}
-.selector p{font-stretch:100%;font-weight:700;margin-bottom:.7rem;}
+.picker{margin-top:2rem;}
+.picker p{font-stretch:100%;font-weight:700;margin-bottom:.7rem;}
 .chips{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;}
 @media (min-width:560px){.chips{display:flex;flex-wrap:wrap;}}
 .chip{
   font-family:inherit;font-size:1rem;
   font-stretch:100%;font-weight:700;
-  color:var(--tinta);background:transparent;
-  border:1.5px solid var(--linea);padding:.6rem 1rem;cursor:pointer;
+  color:var(--ink);background:transparent;
+  border:1.5px solid var(--rule);padding:.6rem 1rem;cursor:pointer;
   transition:border-color .2s ease,color .2s ease;
 }
-.chip:hover{border-color:var(--tinta-suave);}
+.chip:hover{border-color:var(--ink-soft);}
 .chip[aria-pressed="true"]{
-  border-color:var(--acento);color:var(--sobre-acento);background:var(--acento);
+  border-color:var(--accent);color:var(--on-accent);background:var(--accent);
 }
-.btn{
+.button{
   display:inline-block;text-decoration:none;text-align:center;
   font-stretch:110%;font-weight:800;font-size:1.1rem;
-  background:var(--acento);color:var(--sobre-acento);
+  background:var(--accent);color:var(--on-accent);
   padding:.95rem 1.6rem;transition:background .35s ease;
 }
-.btn:hover{filter:brightness(1.08);}
-.hero-cta .btn{width:100%;}
-@media (min-width:560px){.hero-cta .btn{width:auto;}}
+.button:hover{filter:brightness(1.08);}
+.hero-cta .button{width:100%;}
+@media (min-width:560px){.hero-cta .button{width:auto;}}
 
-/* ---- teléfono ---- */
+/* ---- phone ---- */
 .demo{display:flex;justify-content:flex-start;}
-.telefono{
+.phone{
   width:min(100%,320px);
-  border:10px solid var(--tinta);border-radius:34px;
-  background:var(--papel-hondo);padding:1.15rem 1.05rem 1.05rem;
-  box-shadow:0 22px 50px -24px var(--sombra);
+  border:10px solid var(--ink);border-radius:34px;
+  background:var(--paper-deep);padding:1.15rem 1.05rem 1.05rem;
+  box-shadow:0 22px 50px -24px var(--shadow);
 }
 .app-top{
   display:flex;justify-content:space-between;align-items:baseline;
-  font-size:.82rem;color:var(--tinta-suave);
+  font-size:.82rem;color:var(--ink-soft);
   font-stretch:100%;font-weight:600;
 }
 .app-total{margin-top:1.4rem;}
-.app-etiqueta{display:block;font-size:.9rem;color:var(--tinta-suave);}
-.app-cifra{
+.app-label{display:block;font-size:.9rem;color:var(--ink-soft);}
+.app-figure{
   display:block;font-size:2.9rem;line-height:1;margin-top:.15rem;
   font-stretch:112%;font-weight:800;
   font-variant-numeric:tabular-nums;letter-spacing:-.03em;
-  color:var(--acento);transition:color .35s ease;
+  color:var(--accent);transition:color .35s ease;
 }
-.app-lista{list-style:none;margin:1.4rem 0 0;padding:0;
+.app-list{list-style:none;margin:1.4rem 0 0;padding:0;
   display:flex;flex-direction:column;gap:.9rem;}
-.app-lista li{
+.app-list li{
   display:grid;grid-template-columns:auto 1fr auto;gap:.7rem;align-items:baseline;
-  padding-bottom:.9rem;border-bottom:1px solid var(--linea);font-size:.92rem;
+  padding-bottom:.9rem;border-bottom:1px solid var(--rule);font-size:.92rem;
 }
-.app-lista li:last-child{border-bottom:0;padding-bottom:0;}
-.l-marca{color:var(--tinta-suave);font-variant-numeric:tabular-nums;font-size:.82rem;}
-.l-quien{font-stretch:100%;font-weight:700;}
-.l-quien em{display:block;font-style:normal;font-size:.82rem;
-  color:var(--tinta-suave);font-stretch:100%;font-weight:400;}
-.l-monto{font-variant-numeric:tabular-nums;font-stretch:100%;font-weight:700;}
-.app-accion{
+.app-list li:last-child{border-bottom:0;padding-bottom:0;}
+.l-at{color:var(--ink-soft);font-variant-numeric:tabular-nums;font-size:.82rem;}
+.l-who{font-stretch:100%;font-weight:700;}
+.l-who em{display:block;font-style:normal;font-size:.82rem;
+  color:var(--ink-soft);font-stretch:100%;font-weight:400;}
+.l-amount{font-variant-numeric:tabular-nums;font-stretch:100%;font-weight:700;}
+.app-action{
   margin-top:1.3rem;text-align:center;padding:.8rem;
-  background:var(--acento);color:var(--sobre-acento);
+  background:var(--accent);color:var(--on-accent);
   font-stretch:105%;font-weight:800;font-size:.98rem;
   transition:background .35s ease;
 }
 
-/* ---- cuentas ---- */
-.cuentas{padding-block:clamp(2.5rem,6vw,4rem);border-top:1px solid var(--linea);}
+/* ---- answers ---- */
+.answers{padding-block:clamp(2.5rem,6vw,4rem);border-top:1px solid var(--rule);}
 h2{font-size:clamp(1.9rem,5.5vw,2.9rem);}
 .ledger{margin:2rem 0 0;display:flex;flex-direction:column;}
-.ledger .fila{
+.ledger .row{
   display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;
-  gap:.5rem 1.5rem;padding-block:1.05rem;border-bottom:1px solid var(--linea);
+  gap:.5rem 1.5rem;padding-block:1.05rem;border-bottom:1px solid var(--rule);
 }
 .ledger dt{font-size:clamp(1.1rem,3vw,1.35rem);font-stretch:104%;font-weight:600;}
 .ledger dd{
   margin:0;margin-left:auto;font-variant-numeric:tabular-nums;text-align:right;
   font-size:clamp(1.1rem,3vw,1.35rem);
   font-stretch:100%;font-weight:800;
-  color:var(--acento);transition:color .35s ease;
+  color:var(--accent);transition:color .35s ease;
 }
 
-/* ---- modulos ---- */
-.modulos{padding-block:clamp(2.5rem,6vw,4rem);border-top:1px solid var(--linea);}
-.modulos .entrada{max-width:54ch;}
-.caja-modulos{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.6rem;}
-.modulo{
+/* ---- modules ---- */
+.modules{padding-block:clamp(2.5rem,6vw,4rem);border-top:1px solid var(--rule);}
+.modules .lede{max-width:54ch;}
+.module-box{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.6rem;}
+.module{
   font-size:1rem;font-stretch:100%;font-weight:600;
-  padding:.55rem 1rem;border:1.5px solid var(--linea);
-  background:var(--papel-hondo);
+  padding:.55rem 1rem;border:1.5px solid var(--rule);
+  background:var(--paper-deep);
 }
-.modulo.abierto{
-  border-style:dashed;border-color:var(--acento);color:var(--acento);
+.module.open{
+  border-style:dashed;border-color:var(--accent);color:var(--accent);
   background:transparent;font-weight:700;
   transition:color .35s ease,border-color .35s ease;
 }
 
-/* ---- dudas ---- */
-.dudas{padding-block:clamp(2.5rem,6vw,4rem);border-top:1px solid var(--linea);}
-.lista-dudas{margin-top:2rem;display:grid;gap:2rem;}
-@media (min-width:760px){.lista-dudas{grid-template-columns:repeat(3,1fr);gap:2.5rem;}}
-.duda h3{font-size:1.2rem;font-stretch:104%;font-weight:700;}
-.duda p{margin-top:.6rem;color:var(--tinta-suave);max-width:36ch;}
+/* ---- objections ---- */
+.doubts{padding-block:clamp(2.5rem,6vw,4rem);border-top:1px solid var(--rule);}
+.doubt-list{margin-top:2rem;display:grid;gap:2rem;}
+@media (min-width:760px){.doubt-list{grid-template-columns:repeat(3,1fr);gap:2.5rem;}}
+.doubt h3{font-size:1.2rem;font-stretch:104%;font-weight:700;}
+.doubt p{margin-top:.6rem;color:var(--ink-soft);max-width:36ch;}
 
-/* ---- apuntarme ---- */
-.apuntarme{padding-block:clamp(2.5rem,6vw,4rem);border-top:1px solid var(--linea);}
-.apuntarme .entrada{margin-top:1rem;max-width:48ch;}
+/* ---- signup ---- */
+.signup{padding-block:clamp(2.5rem,6vw,4rem);border-top:1px solid var(--rule);}
+.signup .lede{margin-top:1rem;max-width:48ch;}
 form{margin-top:2rem;display:grid;gap:1.1rem;max-width:420px;}
 label{font-stretch:100%;font-weight:700;font-size:.95rem;display:block;margin-bottom:.35rem;}
 input,select,textarea{
   font-family:inherit;font-size:1.05rem;width:100%;
-  padding:.8rem .9rem;color:var(--tinta);line-height:1.45;
-  background:var(--papel-hondo);border:1.5px solid var(--linea);
+  padding:.8rem .9rem;color:var(--ink);line-height:1.45;
+  background:var(--paper-deep);border:1.5px solid var(--rule);
 }
-input:focus,select:focus,textarea:focus{border-color:var(--acento);}
-button.btn{border:0;cursor:pointer;font-family:inherit;}
-.gracias{
-  margin-top:2rem;padding:1.3rem;border-left:5px solid var(--acento);
-  background:var(--papel-hondo);max-width:420px;
-}
-.gracias strong{display:block;font-size:1.2rem;font-stretch:110%;font-weight:800;}
-.gracias.falla{border-left-color:#CE1B2B;}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);}
+button.button{border:0;cursor:pointer;font-family:inherit;}
 button[disabled]{opacity:.6;cursor:progress;}
-.gracias p{margin-top:.4rem;color:var(--tinta-suave);}
-
-/* ---- pie ---- */
-.pie{
-  padding-block:2rem 3rem;border-top:1px solid var(--linea);
-  display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-between;
-  font-size:.9rem;color:var(--tinta-suave);
+.thanks{
+  margin-top:2rem;padding:1.3rem;border-left:5px solid var(--accent);
+  background:var(--paper-deep);max-width:420px;
 }
-.aviso{font-size:.82rem;}
+.thanks strong{display:block;font-size:1.2rem;font-stretch:110%;font-weight:800;}
+.thanks.failed{border-left-color:#CE1B2B;}
+.thanks p{margin-top:.4rem;color:var(--ink-soft);}
+
+/* ---- footer ---- */
+.footer{
+  padding-block:2rem 3rem;border-top:1px solid var(--rule);
+  display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-between;
+  font-size:.9rem;color:var(--ink-soft);
+}
+.notice{font-size:.82rem;}
 
 @media (min-width:900px){
-  .apuntarme{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);column-gap:4rem;align-items:start;}
-  .apuntarme > h2{grid-column:1;grid-row:1;}
-  .apuntarme > .entrada{grid-column:1;grid-row:2;}
-  .apuntarme > form,.apuntarme > .gracias{grid-column:2;grid-row:1 / span 2;margin-top:0;}
+  .signup{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);column-gap:4rem;align-items:start;}
+  .signup > h2{grid-column:1;grid-row:1;}
+  .signup > .lede{grid-column:1;grid-row:2;}
+  .signup > form,.signup > .thanks{grid-column:2;grid-row:1 / span 2;margin-top:0;}
   .hero{grid-template-columns:minmax(0,1.05fr) auto;align-items:start;column-gap:4rem;}
-  .hero-texto{grid-column:1;grid-row:1;}
+  .hero-copy{grid-column:1;grid-row:1;}
   .hero-cta{grid-column:1;grid-row:2;}
   .demo{grid-column:2;grid-row:1 / span 2;justify-content:flex-end;}
 }
@@ -250,177 +249,179 @@ button[disabled]{opacity:.6;cursor:progress;}
 }
 </style>
 
-<div class="limite">
-  <header class="barra">
-    <p class="marca">Apúntalo</p>
-    <a class="btn-chico" href="#apuntarme">Apuntarme</a>
+<div class="wrap">
+  <header class="topbar">
+    <p class="wordmark">Apúntalo</p>
+    <a class="button-small" href="#signup">Apuntarme</a>
   </header>
 
   <main>
     <section class="hero">
-      <div class="hero-texto">
+      <div class="hero-copy">
         <h1>Tú apúntalo. Lo demás sale solo.</h1>
-        <p class="entrada">Sigue apuntando como en tu cuaderno. Al cerrar el día ya sabes cuánto vendiste, quién te debe y qué se está acabando.</p>
-        <div class="selector">
-          <p id="rotulo-nicho">¿Qué negocio tienes?</p>
-          <div class="chips" role="group" aria-labelledby="rotulo-nicho">
-            <button class="chip" type="button" aria-pressed="true" data-nicho-btn="barberia">Barbería</button>
-            <button class="chip" type="button" aria-pressed="false" data-nicho-btn="taller">Taller</button>
-            <button class="chip" type="button" aria-pressed="false" data-nicho-btn="tienda">Tienda</button>
-            <button class="chip" type="button" aria-pressed="false" data-nicho-btn="comida">Comida</button>
+        <p class="lede">Sigue apuntando como en tu cuaderno. Al cerrar el día ya sabes cuánto vendiste, quién te debe y qué se está acabando.</p>
+        <div class="picker">
+          <p id="trade-label">¿Qué negocio tienes?</p>
+          <div class="chips" role="group" aria-labelledby="trade-label">
+            <button class="chip" type="button" aria-pressed="true" data-trade-btn="barbershop">Barbería</button>
+            <button class="chip" type="button" aria-pressed="false" data-trade-btn="workshop">Taller</button>
+            <button class="chip" type="button" aria-pressed="false" data-trade-btn="store">Tienda</button>
+            <button class="chip" type="button" aria-pressed="false" data-trade-btn="food">Comida</button>
           </div>
         </div>
       </div>
 
       <div class="demo">
-        <div class="telefono">
+        <div class="phone">
           <div class="app-top">
             <span>Hoy, martes</span>
             <span>9:41</span>
           </div>
           <div class="app-total" aria-live="polite">
-            <span class="app-etiqueta" data-campo="rotulo">Vendido hoy</span>
-            <strong class="app-cifra" data-campo="total">$2,450</strong>
+            <span class="app-label" data-field="label">Vendido hoy</span>
+            <strong class="app-figure" data-field="total">$2,450</strong>
           </div>
-          <ul class="app-lista" data-campo="lista">
-            <li><span class="l-marca">3:30</span><span class="l-quien">Luis Ramírez<em>Corte y barba</em></span><span class="l-monto">$250</span></li>
-            <li><span class="l-marca">4:15</span><span class="l-quien">Don Beto<em>Corte</em></span><span class="l-monto">$150</span></li>
-            <li><span class="l-marca">5:00</span><span class="l-quien">Ale Fuentes<em>Tinte</em></span><span class="l-monto">$600</span></li>
+          <ul class="app-list" data-field="list">
+            <li><span class="l-at">3:30</span><span class="l-who">Luis Ramírez<em>Corte y barba</em></span><span class="l-amount">$250</span></li>
+            <li><span class="l-at">4:15</span><span class="l-who">Don Beto<em>Corte</em></span><span class="l-amount">$150</span></li>
+            <li><span class="l-at">5:00</span><span class="l-who">Ale Fuentes<em>Tinte</em></span><span class="l-amount">$600</span></li>
           </ul>
-          <div class="app-accion" data-campo="accion">Cobrar un corte</div>
+          <div class="app-action" data-field="action">Cobrar un corte</div>
         </div>
       </div>
 
       <div class="hero-cta">
-        <a class="btn" href="#apuntarme">Avísame cuando abra</a>
+        <a class="button" href="#signup">Avísame cuando abra</a>
       </div>
     </section>
 
-    <section class="cuentas">
+    <section class="answers">
       <h2>Lo que te contesta al cerrar el día</h2>
-      <dl class="ledger" data-campo="ledger">
-        <div class="fila"><dt>¿Cuánto vendí hoy?</dt><dd>$2,450</dd></div>
-        <div class="fila"><dt>¿Quién viene mañana?</dt><dd>6 citas</dd></div>
-        <div class="fila"><dt>¿Quién me debe?</dt><dd>$1,200 de 4 personas</dd></div>
-        <div class="fila"><dt>¿Qué se me está acabando?</dt><dd>3 productos</dd></div>
+      <dl class="ledger" data-field="ledger">
+        <div class="row"><dt>¿Cuánto vendí hoy?</dt><dd>$2,450</dd></div>
+        <div class="row"><dt>¿Quién viene mañana?</dt><dd>6 citas</dd></div>
+        <div class="row"><dt>¿Quién me debe?</dt><dd>$1,200 de 4 personas</dd></div>
+        <div class="row"><dt>¿Qué se me está acabando?</dt><dd>3 productos</dd></div>
       </dl>
     </section>
 
-    <section class="modulos">
+    <section class="modules">
       <h2>Ya viene armado para tu giro</h2>
-      <p class="entrada">Eliges tu negocio y adentro ya está lo que ese negocio usa todos los días — incluyendo el perfil de cada quien que trabaja contigo. Si te falta algo, me lo pides y lo construyo.</p>
-      <div class="caja-modulos" data-campo="modulos">
-        <span class="modulo">Citas del día</span>
-        <span class="modulo">Clientes y su historial</span>
-        <span class="modulo">Perfil de cada barbero</span>
-        <span class="modulo">Comisiones por barbero</span>
-        <span class="modulo">Productos y existencias</span>
-        <span class="modulo">Caja y cierre del día</span>
-        <span class="modulo abierto">Lo que me pidas</span>
+      <p class="lede">Eliges tu negocio y adentro ya está lo que ese negocio usa todos los días — incluyendo el perfil de cada quien que trabaja contigo. Si te falta algo, me lo pides y lo construyo.</p>
+      <div class="module-box" data-field="modules">
+        <span class="module">Citas del día</span>
+        <span class="module">Clientes y su historial</span>
+        <span class="module">Perfil de cada barbero</span>
+        <span class="module">Comisiones por barbero</span>
+        <span class="module">Productos y existencias</span>
+        <span class="module">Caja y cierre del día</span>
+        <span class="module open">Lo que me pidas</span>
       </div>
     </section>
 
-    <section class="dudas">
+    <section class="doubts">
       <h2>Lo que todos preguntan</h2>
-      <div class="lista-dudas">
-        <div class="duda">
+      <div class="doubt-list">
+        <div class="doubt">
           <h3>«No soy bueno con la tecnología»</h3>
           <p>Si mandas un WhatsApp, puedes con esto. Se abre en tres botones: cobrar, agendar y ver el día.</p>
         </div>
-        <div class="duda">
+        <div class="doubt">
           <h3>«No tengo computadora»</h3>
           <p>No hace falta. Se usa desde el mismo teléfono con el que lees esto.</p>
         </div>
-        <div class="duda">
+        <div class="doubt">
           <h3>«¿Tengo que pasar todo mi cuaderno?»</h3>
           <p>No. Empiezas con la venta de hoy y el cuaderno se queda donde está.</p>
         </div>
       </div>
     </section>
 
-    <section class="apuntarme" id="apuntarme">
+    <section class="signup" id="signup">
       <h2>Todavía no está listo.</h2>
-      <p class="entrada">Lo estoy construyendo. Déjame cómo avisarte y te escribo el día que abra — y si me dices qué te falta hoy en tu negocio, eso es lo que construyo primero.</p>
-      <form id="forma-espera" method="post" data-destino="https://hvhwauommivdxbvtbbow.supabase.co" data-llave="sb_publishable_8wvzr-THxvqB8O8mQYzeMA_iz7tf4KT" novalidate>
+      <p class="lede">Lo estoy construyendo. Déjame cómo avisarte y te escribo el día que abra — y si me dices qué te falta hoy en tu negocio, eso es lo que construyo primero.</p>
+      <form id="waitlist-form" method="post" data-endpoint="https://hvhwauommivdxbvtbbow.supabase.co" data-key="sb_publishable_8wvzr-THxvqB8O8mQYzeMA_iz7tf4KT" novalidate>
         <div>
-          <label for="contacto">WhatsApp o correo</label>
-          <input id="contacto" name="contacto" type="text" placeholder="55 1234 5678" required>
+          <label for="contact">WhatsApp o correo</label>
+          <input id="contact" name="contact" type="text" placeholder="55 1234 5678" required>
         </div>
         <div>
-          <label for="negocio">¿Qué negocio tienes?</label>
-          <select id="negocio" name="negocio">
-            <option value="barberia">Barbería o estética</option>
-            <option value="taller">Taller o servicio técnico</option>
-            <option value="tienda">Tienda o abarrotes</option>
-            <option value="comida">Negocio de comida</option>
-            <option value="otro">Otro</option>
+          <label for="trade">¿Qué negocio tienes?</label>
+          <select id="trade" name="trade">
+            <option value="barbershop">Barbería o estética</option>
+            <option value="workshop">Taller o servicio técnico</option>
+            <option value="store">Tienda o abarrotes</option>
+            <option value="food">Negocio de comida</option>
+            <option value="other">Otro</option>
           </select>
         </div>
         <div>
-          <label for="para-que">¿Para qué lo necesitas?</label>
-          <textarea id="para-que" name="para-que" rows="3" placeholder="Llevar las comisiones de tres barberos y saber quién me debe."></textarea>
+          <label for="need">¿Para qué lo necesitas?</label>
+          <textarea id="need" name="need" rows="3" placeholder="Llevar las comisiones de tres barberos y saber quién me debe."></textarea>
         </div>
-        <button class="btn" type="submit">Avísame cuando abra</button>
+        <button class="button" type="submit">Avísame cuando abra</button>
       </form>
-      <div class="gracias" id="gracias" hidden>
+      <div class="thanks" id="thanks" hidden>
         <strong>Quedas apuntado.</strong>
-        <p id="gracias-detalle">Te escribo en cuanto abra.</p>
+        <p id="thanks-detail">Te escribo en cuanto abra.</p>
       </div>
     </section>
   </main>
 
-  <footer class="pie">
+  <footer class="footer">
     <p>Apúntalo — para negocios que hoy llevan todo en papel.</p>
-    <p class="aviso" data-campo="aviso">Vista previa del diseño: el registro todavía no guarda datos.</p>
+    <p class="notice" data-field="notice">Vista previa del diseño: el registro todavía no guarda datos.</p>
   </footer>
 </div>
 
 <script>
 (function(){
-  var NICHOS={
-    barberia:{
-      modulos:["Citas del día","Clientes y su historial","Perfil de cada barbero","Comisiones por barbero","Productos y existencias","Caja y cierre del día"],
-      pista:"Llevar las comisiones de tres barberos y saber quién me debe.",
-      rotulo:"Vendido hoy", total:"$2,450", accion:"Cobrar un corte",
-      lista:[["3:30","Luis Ramírez","Corte y barba","$250"],
-             ["4:15","Don Beto","Corte","$150"],
-             ["5:00","Ale Fuentes","Tinte","$600"]],
+  // One product, four trades. Only the wording changes, so only the
+  // wording lives here. Keys match the database; labels stay Spanish.
+  var TRADES={
+    barbershop:{
+      modules:["Citas del día","Clientes y su historial","Perfil de cada barbero","Comisiones por barbero","Productos y existencias","Caja y cierre del día"],
+      hint:"Llevar las comisiones de tres barberos y saber quién me debe.",
+      label:"Vendido hoy", total:"$2,450", action:"Cobrar un corte",
+      list:[["3:30","Luis Ramírez","Corte y barba","$250"],
+            ["4:15","Don Beto","Corte","$150"],
+            ["5:00","Ale Fuentes","Tinte","$600"]],
       ledger:[["¿Cuánto vendí hoy?","$2,450"],
               ["¿Quién viene mañana?","6 citas"],
               ["¿Quién me debe?","$1,200 de 4 personas"],
               ["¿Qué se me está acabando?","3 productos"]]
     },
-    taller:{
-      modulos:["Órdenes de trabajo","Clientes y vehículos","Perfil de cada mecánico","Presupuestos","Refacciones","Caja y cierre del día"],
-      pista:"Saber qué órdenes siguen abiertas y cuánto me deben los clientes.",
-      rotulo:"Facturado hoy", total:"$8,900", accion:"Abrir una orden",
-      lista:[["120","Jetta 2016","Cambio de balatas","$1,800"],
-             ["121","Nissan March","Afinación","$2,400"],
-             ["122","Tsuru","Clutch","$4,700"]],
+    workshop:{
+      modules:["Órdenes de trabajo","Clientes y vehículos","Perfil de cada mecánico","Presupuestos","Refacciones","Caja y cierre del día"],
+      hint:"Saber qué órdenes siguen abiertas y cuánto me deben los clientes.",
+      label:"Facturado hoy", total:"$8,900", action:"Abrir una orden",
+      list:[["120","Jetta 2016","Cambio de balatas","$1,800"],
+            ["121","Nissan March","Afinación","$2,400"],
+            ["122","Tsuru","Clutch","$4,700"]],
       ledger:[["¿Cuánto facturé hoy?","$8,900"],
               ["¿Qué entrego mañana?","4 órdenes"],
               ["¿Quién me debe?","$6,400 de 3 clientes"],
               ["¿Qué refacción me falta?","5 piezas"]]
     },
-    tienda:{
-      modulos:["Ventas del mostrador","Inventario","Fiados","Perfil de cada empleado","Proveedores","Caja y cierre del día"],
-      pista:"Controlar los fiados y que no se me acabe la mercancía.",
-      rotulo:"Vendido hoy", total:"$3,180", accion:"Cobrar una venta",
-      lista:[["18:02","Venta","3 productos","$340"],
-             ["17:41","Doña Mari","Fiado","$120"],
-             ["17:15","Venta","Refrescos","$95"]],
+    store:{
+      modules:["Ventas del mostrador","Inventario","Fiados","Perfil de cada empleado","Proveedores","Caja y cierre del día"],
+      hint:"Controlar los fiados y que no se me acabe la mercancía.",
+      label:"Vendido hoy", total:"$3,180", action:"Cobrar una venta",
+      list:[["18:02","Venta","3 productos","$340"],
+            ["17:41","Doña Mari","Fiado","$120"],
+            ["17:15","Venta","Refrescos","$95"]],
       ledger:[["¿Cuánto vendí hoy?","$3,180"],
               ["¿Cuánto hay en caja?","$1,940"],
               ["¿Quién me debe?","$890 de 7 fiados"],
               ["¿Qué se está acabando?","12 productos"]]
     },
-    comida:{
-      modulos:["Pedidos y comandas","Costo por platillo","Insumos","Perfil de cada empleado","Mesas y para llevar","Caja y cierre del día"],
-      pista:"Saber cuánto me cuesta cada platillo y cuál se vende más.",
-      rotulo:"Vendido hoy", total:"$4,320", accion:"Tomar un pedido",
-      lista:[["Mesa 4","2 tacos de pastor","Para comer aquí","$190"],
-             ["Para llevar","Orden de suadero","Con todo","$150"],
-             ["Mesa 2","3 quesadillas","Sin cebolla","$210"]],
+    food:{
+      modules:["Pedidos y comandas","Costo por platillo","Insumos","Perfil de cada empleado","Mesas y para llevar","Caja y cierre del día"],
+      hint:"Saber cuánto me cuesta cada platillo y cuál se vende más.",
+      label:"Vendido hoy", total:"$4,320", action:"Tomar un pedido",
+      list:[["Mesa 4","2 tacos de pastor","Para comer aquí","$190"],
+            ["Para llevar","Orden de suadero","Con todo","$150"],
+            ["Mesa 2","3 quesadillas","Sin cebolla","$210"]],
       ledger:[["¿Cuánto vendí hoy?","$4,320"],
               ["¿Qué platillo dejó más?","Pastor, $1,180"],
               ["¿Cuánto me costó cocinar?","$1,510"],
@@ -428,113 +429,112 @@ button[disabled]{opacity:.6;cursor:progress;}
     }
   };
 
-  var raiz=document.documentElement;
-  var chips=document.querySelectorAll("[data-nicho-btn]");
-  var campos={};
-  document.querySelectorAll("[data-campo]").forEach(function(el){campos[el.dataset.campo]=el;});
+  var root=document.documentElement;
+  var chips=document.querySelectorAll("[data-trade-btn]");
+  var fields={};
+  document.querySelectorAll("[data-field]").forEach(function(el){fields[el.dataset.field]=el;});
 
-  function texto(el,valor){ if(el) el.textContent=valor; }
+  function setText(el,value){ if(el) el.textContent=value; }
 
-  function pinta(clave){
-    var d=NICHOS[clave]; if(!d) return;
-    raiz.setAttribute("data-nicho",clave);
-    texto(campos.rotulo,d.rotulo);
-    texto(campos.total,d.total);
-    texto(campos.accion,d.accion);
+  function paint(key){
+    var t=TRADES[key]; if(!t) return;
+    root.setAttribute("data-trade",key);
+    setText(fields.label,t.label);
+    setText(fields.total,t.total);
+    setText(fields.action,t.action);
 
-    campos.lista.innerHTML="";
-    d.lista.forEach(function(f){
+    fields.list.innerHTML="";
+    t.list.forEach(function(row){
       var li=document.createElement("li");
-      var a=document.createElement("span"); a.className="l-marca"; a.textContent=f[0];
-      var b=document.createElement("span"); b.className="l-quien"; b.textContent=f[1];
-      var em=document.createElement("em"); em.textContent=f[2]; b.appendChild(em);
-      var c=document.createElement("span"); c.className="l-monto"; c.textContent=f[3];
-      li.append(a,b,c); campos.lista.appendChild(li);
+      var at=document.createElement("span"); at.className="l-at"; at.textContent=row[0];
+      var who=document.createElement("span"); who.className="l-who"; who.textContent=row[1];
+      var em=document.createElement("em"); em.textContent=row[2]; who.appendChild(em);
+      var amount=document.createElement("span"); amount.className="l-amount"; amount.textContent=row[3];
+      li.append(at,who,amount); fields.list.appendChild(li);
     });
 
-    campos.ledger.innerHTML="";
-    d.ledger.forEach(function(f){
-      var fila=document.createElement("div"); fila.className="fila";
-      var dt=document.createElement("dt"); dt.textContent=f[0];
-      var dd=document.createElement("dd"); dd.textContent=f[1];
-      fila.append(dt,dd); campos.ledger.appendChild(fila);
+    fields.ledger.innerHTML="";
+    t.ledger.forEach(function(row){
+      var line=document.createElement("div"); line.className="row";
+      var dt=document.createElement("dt"); dt.textContent=row[0];
+      var dd=document.createElement("dd"); dd.textContent=row[1];
+      line.append(dt,dd); fields.ledger.appendChild(line);
     });
 
-    campos.modulos.innerHTML="";
-    d.modulos.forEach(function(m){
-      var t=document.createElement("span"); t.className="modulo"; t.textContent=m;
-      campos.modulos.appendChild(t);
+    fields.modules.innerHTML="";
+    t.modules.forEach(function(name){
+      var tag=document.createElement("span"); tag.className="module"; tag.textContent=name;
+      fields.modules.appendChild(tag);
     });
-    var abierto=document.createElement("span");
-    abierto.className="modulo abierto"; abierto.textContent="Lo que me pidas";
-    campos.modulos.appendChild(abierto);
+    var openTag=document.createElement("span");
+    openTag.className="module open"; openTag.textContent="Lo que me pidas";
+    fields.modules.appendChild(openTag);
 
-    var pista=document.getElementById("para-que");
-    if(pista) pista.setAttribute("placeholder",d.pista);
+    var need=document.getElementById("need");
+    if(need) need.setAttribute("placeholder",t.hint);
 
     chips.forEach(function(c){
-      c.setAttribute("aria-pressed", c.dataset.nichoBtn===clave ? "true":"false");
+      c.setAttribute("aria-pressed", c.dataset.tradeBtn===key ? "true":"false");
     });
-    var sel=document.getElementById("negocio");
-    if(sel) sel.value=clave;
+    var select=document.getElementById("trade");
+    if(select) select.value=key;
   }
 
   chips.forEach(function(c){
-    c.addEventListener("click",function(){ pinta(c.dataset.nichoBtn); });
+    c.addEventListener("click",function(){ paint(c.dataset.tradeBtn); });
   });
 
-  var forma=document.getElementById("forma-espera");
-  if(campos.aviso){
-    campos.aviso.textContent = forma.dataset.destino
+  var form=document.getElementById("waitlist-form");
+  if(fields.notice){
+    fields.notice.textContent = form.dataset.endpoint
       ? "Tu contacto solo se usa para avisarte cuando abra. Nada más."
       : "Vista previa del diseño: esta versión no guarda datos.";
   }
-  var caja=document.getElementById("gracias");
-  var detalle=document.getElementById("gracias-detalle");
-  var titulo=caja.querySelector("strong");
-  var boton=forma.querySelector("button[type=submit]");
+  var box=document.getElementById("thanks");
+  var detail=document.getElementById("thanks-detail");
+  var title=box.querySelector("strong");
+  var button=form.querySelector("button[type=submit]");
 
-  function cerrar(encabezado,texto,falla){
-    titulo.textContent=encabezado;
-    detalle.textContent=texto;
-    caja.classList.toggle("falla",!!falla);
-    caja.hidden=false;
-    if(!falla) forma.hidden=true;
+  function close(heading,text,failed){
+    title.textContent=heading;
+    detail.textContent=text;
+    box.classList.toggle("failed",!!failed);
+    box.hidden=false;
+    if(!failed) form.hidden=true;
   }
 
-  forma.addEventListener("submit",function(e){
+  form.addEventListener("submit",function(e){
     e.preventDefault();
-    var contacto=document.getElementById("contacto");
-    if(!contacto.value.trim()){ contacto.focus(); return; }
-    var sel=document.getElementById("negocio");
-    var giro=sel.value;
-    var nombre=sel.options[sel.selectedIndex].textContent.toLowerCase();
-    var pedido=document.getElementById("para-que").value.trim();
-    var destino=forma.dataset.destino, llave=forma.dataset.llave;
+    var contact=document.getElementById("contact");
+    if(!contact.value.trim()){ contact.focus(); return; }
+    var select=document.getElementById("trade");
+    var tradeLabel=select.options[select.selectedIndex].textContent.toLowerCase();
+    var need=document.getElementById("need").value.trim();
+    var endpoint=form.dataset.endpoint, key=form.dataset.key;
 
-    var listo="Te escribo a "+contacto.value.trim()+" en cuanto abra para "+nombre+"."
-      +(pedido?" Leo lo que me pediste y, si varios lo piden, eso construyo primero.":"");
+    var done="Te escribo a "+contact.value.trim()+" en cuanto abra para "+tradeLabel+"."
+      +(need?" Leo lo que me pediste y, si varios lo piden, eso construyo primero.":"");
 
-    if(!destino||!llave){
-      cerrar("Vista previa","Así se ve la confirmación. Esta versión no guarda nada todavía; la publicada sí.",false);
+    if(!endpoint||!key){
+      close("Vista previa","Así se ve la confirmación. Esta versión no guarda nada todavía; la publicada sí.",false);
       return;
     }
 
-    boton.disabled=true; boton.textContent="Apuntando…";
-    fetch(destino+"/rest/v1/lista_espera",{
+    button.disabled=true; button.textContent="Apuntando…";
+    fetch(endpoint+"/rest/v1/waitlist",{
       method:"POST",
-      headers:{"apikey":llave,"Authorization":"Bearer "+llave,
+      headers:{"apikey":key,"Authorization":"Bearer "+key,
                "Content-Type":"application/json","Prefer":"return=minimal"},
-      body:JSON.stringify({contacto:contacto.value.trim(),giro:giro,
-                           necesidad:pedido||null})
+      body:JSON.stringify({contact:contact.value.trim(),trade:select.value,
+                           need:need||null})
     }).then(function(r){
-      // 409 es contacto repetido. Se responde igual que un alta nueva para no
-      // revelar quién está en la lista.
-      if(r.ok||r.status===409){ cerrar("Quedas apuntado.",listo,false); return; }
+      // 409 means the contact is already on the list. Answered the same
+      // as a fresh sign-up so the page never reveals who is on it.
+      if(r.ok||r.status===409){ close("Quedas apuntado.",done,false); return; }
       throw new Error("HTTP "+r.status);
     }).catch(function(){
-      boton.disabled=false; boton.textContent="Avísame cuando abra";
-      cerrar("No se pudo guardar","Revisa tu conexión y vuelve a intentarlo. Si sigue fallando, escríbeme por Instagram y te apunto a mano.",true);
+      button.disabled=false; button.textContent="Avísame cuando abra";
+      close("No se pudo guardar","Revisa tu conexión y vuelve a intentarlo. Si sigue fallando, escríbeme por Instagram y te apunto a mano.",true);
     });
   });
 })();

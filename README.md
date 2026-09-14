@@ -80,14 +80,23 @@ Pendiente: **la CSP lleva `'unsafe-inline'`** porque el CSS y el
 JavaScript van embebidos. Cuando haya paso de compilación, moverlos a
 archivos aparte y quitar esa excepción.
 
+## Contenido
+
+- `index.html` — landing de prelanzamiento, estática, sin build.
+- `web/` — la aplicación (Next.js + Supabase).
+- `docs/data-model.md` — el modelo de datos y su aislamiento.
+
 ## El producto
 
 El modelo de datos ya está en pie, con el aislamiento entre negocios
-probado. Ver `docs/modelo-de-datos.md`.
+probado. Ver `docs/data-model.md`.
 
-Siguiente: la aplicación. Un solo flujo de punta a punta —apuntar una
-venta y ver el cierre del día— antes de abrir el abanico a los cuatro
-giros.
+La aplicación vive en `web/`, con el primer flujo completo: entrar, dar
+de alta el negocio, apuntar y ver el cierre del día.
+
+**El código va en inglés, el producto en español.** Los identificadores,
+las tablas y los comentarios siguen la convención; todo lo que lee el
+dueño de la barbería sigue en español, porque ese es su idioma.
 
 ## Pendiente
 

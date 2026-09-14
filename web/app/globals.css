@@ -1,0 +1,98 @@
+/* Same tokens as the marketing site: the app and the site are one product. */
+:root{
+  --paper:#F6F7F5;
+  --paper-deep:#EBEEE9;
+  --ink:#12212E;
+  --ink-soft:#5B6C79;
+  --rule:#D7DCD6;
+  --danger:#CE1B2B;
+  --accent:#2F4BE0;
+  --on-accent:#FFFFFF;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --paper:#0D1821;
+    --paper-deep:#14232F;
+    --ink:#EDF2EF;
+    --ink-soft:#94A7B4;
+    --rule:#22333F;
+    --danger:#FF6B78;
+    --on-accent:#0D1821;
+  }
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Archivo','Helvetica Neue',Arial,sans-serif;
+  font-size:1.0625rem;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2{font-stretch:114%;font-weight:800;line-height:1;letter-spacing:-.02em;margin:0;text-wrap:balance;}
+h1{font-size:clamp(1.9rem,7vw,2.6rem);}
+h2{font-size:1.25rem;}
+p{margin:0;}
+a{color:inherit;}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;}
+
+.screen{max-width:520px;margin-inline:auto;padding-inline:20px;padding-block:1.5rem 6rem;}
+.topbar{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  padding-block:.5rem 1.5rem;border-bottom:1px solid var(--rule);margin-bottom:1.5rem;}
+.wordmark{font-stretch:120%;font-weight:900;font-size:1.15rem;letter-spacing:-.03em;}
+.muted{color:var(--ink-soft);font-size:.9rem;}
+
+form{display:grid;gap:1.15rem;margin-top:1.75rem;}
+label{display:block;font-stretch:100%;font-weight:700;font-size:.95rem;margin-bottom:.35rem;}
+input,select{
+  font-family:inherit;font-size:1.05rem;width:100%;padding:.85rem .9rem;
+  color:var(--ink);background:var(--paper-deep);
+  border:1.5px solid var(--rule);border-radius:0;
+}
+input:focus,select:focus{border-color:var(--accent);}
+input[inputmode="decimal"]{font-size:1.6rem;font-weight:800;font-variant-numeric:tabular-nums;}
+
+.button{
+  display:block;width:100%;text-align:center;text-decoration:none;
+  font-family:inherit;font-stretch:110%;font-weight:800;font-size:1.1rem;
+  background:var(--accent);color:var(--on-accent);
+  border:0;padding:1rem;cursor:pointer;
+}
+.button[disabled]{opacity:.6;cursor:progress;}
+.button.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+.linkish{background:none;border:0;padding:0;font:inherit;color:var(--accent);
+  text-decoration:underline;cursor:pointer;}
+
+.callout{border-left:5px solid var(--danger);background:var(--paper-deep);padding:.9rem 1rem;}
+.callout.good{border-left-color:var(--accent);}
+
+/* The day */
+.tally{border-bottom:1px solid var(--rule);padding-bottom:1.5rem;margin-bottom:.5rem;}
+.tally .label{color:var(--ink-soft);font-size:.95rem;}
+.figure{display:block;font-size:clamp(3rem,14vw,4rem);line-height:1;margin-top:.2rem;
+  font-stretch:112%;font-weight:800;font-variant-numeric:tabular-nums;
+  letter-spacing:-.03em;color:var(--accent);}
+.summary{display:flex;gap:1.5rem;margin-top:.9rem;color:var(--ink-soft);font-size:.95rem;}
+.summary b{color:var(--ink);font-variant-numeric:tabular-nums;}
+
+.entries{list-style:none;margin:1.5rem 0 0;padding:0;display:flex;flex-direction:column;}
+.entries li{display:grid;grid-template-columns:auto 1fr auto;gap:.8rem;align-items:baseline;
+  padding-block:1rem;border-bottom:1px solid var(--rule);}
+.entries .at{color:var(--ink-soft);font-size:.85rem;font-variant-numeric:tabular-nums;}
+.entries .what{font-stretch:100%;font-weight:700;}
+.entries .what em{display:block;font-style:normal;font-size:.85rem;font-weight:400;color:var(--ink-soft);}
+.entries .amount{font-weight:800;font-variant-numeric:tabular-nums;}
+
+.blank{margin-top:2rem;padding:1.5rem;background:var(--paper-deep);}
+.blank p{color:var(--ink-soft);margin-top:.4rem;}
+
+.docked{position:fixed;left:0;right:0;bottom:0;padding:1rem 20px calc(1rem + env(safe-area-inset-bottom));
+  background:linear-gradient(to top,var(--paper) 65%,transparent);}
+.docked .button{max-width:480px;margin-inline:auto;}
+
+.trades{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;}
+.trade{font-family:inherit;font-size:1rem;font-stretch:100%;font-weight:700;
+  padding:1rem .75rem;background:transparent;color:var(--ink);
+  border:1.5px solid var(--rule);cursor:pointer;text-align:center;}
+.trade[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent);}
